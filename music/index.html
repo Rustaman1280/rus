@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="height: 2000px; margin: 0; padding: 0; position: relative;">
+<audio id="lagu" autoplay loop>
+  <source src="ytmp3free.cc_juicy-luicy-lantas-lirik-youtubemp3free.org.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Tombol transparan yang menutupi seluruh layar -->
+<div id="invisibleButton" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; cursor: default;"></div>
+
+<div style="text-align: center; margin-top: 20px; position: relative; z-index: 1001;">
+  <p></p>
+</div><script>    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('lagu');
+      let audioStarted = false;
+      const invisibleButton = document.getElementById('invisibleButton');
+      
+      // Mencoba memutar audio saat halaman dimuat
+      audio.play().catch(() => {
+        // Jika autoplay diblokir, akan ditangani oleh event listener lain
+        console.log("Autoplay diblokir, menunggu interaksi pengguna");
+      });
+      
+      // Fungsi untuk memainkan audio dan mencatat bahwa audio telah dimulai
+      function playAudio() {
+        if (!audioStarted) {
+          audio.muted = false; // Pastikan audio tidak di-mute
+          audio.play().then(() => {
+            audioStarted = true;
+            console.log("Audio berhasil diputar");
+            
+            // Hapus tombol transparan setelah musik dimulai
+            if (invisibleButton) {
+              invisibleButton.style.display = 'none';
+            }
+            
+            // Hapus tombol jika ada
+            const playButton = document.getElementById('playButton');
+            if (playButton) {
+              playButton.remove();
+            }
+          }).catch(error => {
+            console.error("Masih tidak bisa memutar audio:", error);
+          });
+        }
+      }
+        // Tambahkan event listener untuk tombol transparan
+      if (invisibleButton) {
+        invisibleButton.addEventListener('click', function() {
+          playAudio();
+        });
+      }
+      
+      // Event listener untuk interaksi pengguna lainnya
+      document.addEventListener('click', function() {
+        playAudio();
+      }, { once: true });
+      
+      document.addEventListener('keydown', function() {
+        playAudio();
+      }, { once: true });
+      
+      // Tambahkan event listener untuk scroll
+      window.addEventListener('scroll', function() {
+        playAudio();
+      }, { once: true });
+        // Jika masih diblokir, kita tetap membiarkan tombol transparan bekerja
+      audio.play().catch(() => {
+        // Tambahkan pesan informasi bahwa perlu interaksi
+        const infoMsg = document.createElement("div");
+        infoMsg.innerHTML = "";
+        infoMsg.style.position = "fixed";
+        infoMsg.style.bottom = "20px";
+        infoMsg.style.left = "50%";
+        infoMsg.style.transform = "translateX(-50%)";
+        infoMsg.style.padding = "10px";
+        infoMsg.style.backgroundColor = "rgba(0,0,0,0)";
+        infoMsg.style.color = "white";
+        infoMsg.style.borderRadius = "5px";
+        infoMsg.style.zIndex = "2000";
+        infoMsg.style.textAlign = "center";
+        infoMsg.id = "infoMessage";
+        document.body.appendChild(infoMsg);
+        
+        // Sembunyikan pesan setelah beberapa detik
+        setTimeout(() => {
+          infoMsg.style.opacity = "0";
+          infoMsg.style.transition = "opacity 1s";
+        }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>
