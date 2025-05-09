@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rustaman ID - Verifikasi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Noto Sans', sans-serif;
+            color: #202124;
+            background-color: #fff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            align-items: center; /* Center main content and footer horizontally */
+        }
+
+        .main-content {
+            width: 100%;
+            max-width: 450px; /* Max width for the form block */
+            padding: 30px 24px; /* Adjusted padding */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .google-logo {
+            width: 75px;
+            height: auto;
+            margin-bottom: 24px;
+            align-self: flex-start;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 400;
+            color: #202124;
+            margin: 0 0 8px 0;
+            line-height: 1.333;
+        }
+
+        .account-info {
+            display: flex;
+            align-items: center;
+            border: 1px solid #dadce0;
+            border-radius: 25px; /* Highly rounded corners */
+            padding: 6px 16px 6px 8px; /* Top/Bottom, Right, Left */
+            margin-top: 16px;
+            margin-bottom: 32px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+        .account-info:hover {
+            background-color: #f8f9fa;
+        }
+
+        .profile-image-wrapper {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 12px;
+            background-color: #e0e0e0; /* Placeholder BG */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-icon-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .email {
+            color: #3c4043;
+            font-weight: 500;
+            margin-right: auto; /* Pushes dropdown icon to the right */
+        }
+
+        .dropdown-icon {
+            color: #5f6368;
+            font-size: 10px; /* Make arrow more visible */
+            line-height: 2;
+        }
+
+        .instruction-text {
+            font-size: 16px;
+            color: #202124;
+            margin-bottom: 28px;
+        }
+
+        .text-field-outlined {
+            position: relative;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            transition: border-color 0.2s ease, border-width 0.2s ease;
+            margin-bottom: 8px; /* Space between input and checkbox */
+        }
+
+        .text-field-outlined:focus-within {
+            border-color: #1a73e8;
+            border-width: 2px;
+        }
+        
+        .text-field-input {
+            width: 100%;
+            height: 56px;
+            padding: 16px 12px;
+            box-sizing: border-box;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background-color: transparent;
+            color: #202124;
+            position: relative; /* For z-index if needed with label */
+        }
+        /* Adjust padding when border becomes 2px to prevent content shift */
+        .text-field-outlined:focus-within .text-field-input {
+            padding: 15px 11px; /* 16px - 1px border diff, 12px - 1px border diff */
+        }
+
+        .text-field-label {
+            position: absolute;
+            top: 50%;
+            left: 13px;
+            transform: translateY(-50%);
+            color: #5f6368;
+            font-size: 16px;
+            pointer-events: none;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: white;
+            padding: 0 4px;
+        }
+
+        .text-field-input:focus + .text-field-label,
+        .text-field-input:not(:placeholder-shown) + .text-field-label {
+            top: 0;
+            transform: translateY(-50%) scale(0.75);
+            color: #1a73e8;
+            /* Adjust left for 2px border focus state */
+            left: 11px; /* 13px - 2px + original padding diff */
+        }
+        .text-field-outlined:focus-within .text-field-input:not(:placeholder-shown) + .text-field-label,
+        .text-field-outlined:focus-within .text-field-input:focus + .text-field-label {
+             left: 11px; /* Ensure consistent position */
+        }
+
+
+        .show-password-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 36px;
+            font-size: 14px;
+            color: #3c4043;
+            padding-top: 8px; /* Give some space from the input field */
+        }
+
+        .show-password-option input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #5f6368;
+            border-radius: 3px;
+            margin-right: 10px;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .show-password-option input[type="checkbox"]:checked {
+            background-color: #1a73e8;
+            border-color: #1a73e8;
+        }
+
+        .show-password-option input[type="checkbox"]:checked::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: translate(4px, 0px) rotate(45deg); /* Center checkmark */
+        }
+        
+        .show-password-option label {
+            cursor: pointer;
+        }
+
+        .actions-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px; /* From image, this seems about right */
+        }
+
+        .try-other-way {
+            color: #1a73e8;
+            background-color: transparent;
+            border: none;
+            padding: 10px 0px; /* Vertical padding for better click target, no horizontal for text only */
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .try-other-way:hover {
+            background-color: rgba(26, 115, 232, 0.04);
+        }
+
+        .next-button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        .next-button:hover {
+            background-color: #1867c0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .page-footer {
+            width: 100%;
+            max-width: 450px; /* Match form width */
+            padding: 16px 24px; /* Match main-content padding */
+            display: flex;
+            justify-content: space-between; /* For potential future items */
+            align-items: center;
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        .language-picker {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px 0; /* Click area */
+        }
+        .language-picker span:first-child {
+            margin-right: 8px;
+        }
+        .dropdown-icon-footer {
+            font-size: 10px; /* Made slightly larger for visibility */
+            line-height: 2;
+        }
+
+        /* Ensure placeholder is not shown for floating label trick to work with :not(:placeholder-shown) */
+        .text-field-input::placeholder {
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="main-content">
+            <svg width="50px" height="50px" viewBox="0 0 32 32" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><path d="M23.75,16A7.7446,7.7446,0,0,1,8.7177,18.6259L4.2849,22.1721A13.244,13.244,0,0,0,29.25,16" fill="#00ac47"/><path d="M23.75,16a7.7387,7.7387,0,0,1-3.2516,6.2987l4.3824,3.5059A13.2042,13.2042,0,0,0,29.25,16" fill="#4285f4"/><path d="M8.25,16a7.698,7.698,0,0,1,.4677-2.6259L4.2849,9.8279a13.177,13.177,0,0,0,0,12.3442l4.4328-3.5462A7.698,7.698,0,0,1,8.25,16Z" fill="#ffba00"/><polygon fill="#2ab2db" points="8.718 13.374 8.718 13.374 8.718 13.374 8.718 13.374"/><path d="M16,8.25a7.699,7.699,0,0,1,4.558,1.4958l4.06-3.7893A13.2152,13.2152,0,0,0,4.2849,9.8279l4.4328,3.5462A7.756,7.756,0,0,1,16,8.25Z" fill="#ea4435"/><polygon fill="#2ab2db" points="8.718 18.626 8.718 18.626 8.718 18.626 8.718 18.626"/><path d="M29.25,15v1L27,19.5H16.5V14H28.25A1,1,0,0,1,29.25,15Z" fill="#4285f4"/></svg>
+            <br>
+            <h1 class="title">Selamat datang</h1>
+
+            <div class="account-info">
+                <div class="profile-image-wrapper">
+                    <!-- Placeholder resembling the sketch-like avatar. Replace with actual if available -->
+                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjX5p_2n_Sz7gSNPh6qXs0tCf-gwPjBqaJa_ni6D3xT_2cxMf-Cp=s64-c" alt="Profile" class="profile-icon-img">
+                </div>
+                <span class="email">abaykubay11@gmail.com</span>
+                <span class="dropdown-icon">▼</span>
+            </div>
+
+            <p class="instruction-text">Untuk melanjutkan, verifikasi diri Anda terlebih dahulu</p>
+
+            <div class="text-field-outlined">
+                <input type="password" id="password" class="text-field-input" placeholder=" " required> <!-- placeholder=" " is important for :not(:placeholder-shown) -->
+                <label for="password" class="text-field-label">Masukkan sandi</label>
+            </div>
+
+            <div class="show-password-option">
+                <input type="checkbox" id="show-password-checkbox" onclick="togglePasswordVisibility()">
+                <label for="show-password-checkbox">Tampilkan sandi</label>
+            </div>
+
+            <div class="actions-container">
+                <a href="#" class="try-other-way">Coba cara lain</a>
+                <button type="submit" class="next-button">Selanjutnya</button>
+            </div>
+        </div>
+
+        <footer class="page-footer">
+            <div class="language-picker">
+                <span>Indonesia</span>
+                <span class="dropdown-icon-footer">▼</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>
