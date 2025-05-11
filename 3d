@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Kid Robot - 3D Interactive Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #00ffcc;
+            --secondary: #6a11cb;
+            --dark: #121212;
+            --light: #ffffff;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glow: 0 0 15px var(--primary);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--light);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(10, 10, 30, 0.8), rgba(10, 10, 30, 0.4));
+            z-index: -1;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            grid-template-rows: 80px 1fr 80px;
+            grid-template-areas:
+                "sidebar header"
+                "sidebar main"
+                "sidebar footer";
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        /* Header Styling */
+        .header {
+            grid-area: header;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            color: var(--primary);
+            text-shadow: var(--glow);
+        }
+        
+        .nav-controls {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--light);
+            border-radius: 8px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: var(--glow);
+        }
+        
+        /* Sidebar Styling */
+        .sidebar {
+            grid-area: sidebar;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-shadow: var(--glow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+        }
+        
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .menu-item i {
+            font-size: 1.2rem;
+        }
+        
+        .menu-item.active {
+            background: rgba(0, 255, 204, 0.1);
+            border-left: 3px solid var(--primary);
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .menu-item.active i,
+        .menu-item.active span {
+            color: var(--primary);
+        }
+        
+        .stats {
+            margin-top: auto;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* Main Content Styling */
+        .main {
+            grid-area: main;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+        
+        .control-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn i {
+            font-size: 1.2rem;
+            color: var(--light);
+        }
+        
+        .control-btn:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+        
+        .control-btn:hover i {
+            color: var(--dark);
+        }
+        
+        /* Footer Styling */
+        .footer {
+            grid-area: footer;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .power-bar {
+            width: 200px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .power-fill {
+            height: 100%;
+            width: 75%;
+            background: linear-gradient(90deg, var(--primary), #00ff99);
+            border-radius: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons i {
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons i:hover {
+            color: var(--primary);
+            text-shadow: var(--glow);
+        }
+        
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.5;
+            animation: float 8s infinite linear;
+        }
+        
+        /* Glass Cards for Game Info */
+        .info-cards {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 10;
+            max-width: 250px;
+        }
+        
+        .info-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .info-card p {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                opacity: 0.8;
+                box-shadow: 0 0 10px var(--primary);
+            }
+            50% {
+                opacity: 1;
+                box-shadow: 0 0 20px var(--primary);
+            }
+            100% {
+                opacity: 0.8;
+                box-shadow: 0 0 10px var(--primary);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px var(--primary); }
+            50% { text-shadow: 0 0 20px var(--primary), 0 0 30px var(--primary); }
+            100% { text-shadow: 0 0 10px var(--primary); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                grid-template-areas:
+                    "header"
+                    "main"
+                    "footer";
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .info-cards {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>SUPER KID ROBOT</h1>
+            <div class="nav-controls">
+                <button class="nav-btn">PLAY</button>
+                <button class="nav-btn">SETTINGS</button>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <span>ROBO WORLD</span>
+            </div>
+            
+            <div class="menu">
+                <div class="menu-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Play Game</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-trophy"></i>
+                    <span>Leaderboard</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Power</span>
+                    <span class="stat-value">85%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Level</span>
+                    <span class="stat-value">42</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">XP Points</span>
+                    <span class="stat-value">12,450</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main">
+            <div class="game-container">
+                <iframe src='https://my.spline.design/superkidrobotcopy-j0rM6k8bJ4OFqvi04H5UMJWI/' frameborder='0' width='100%' height='100%' class="iframe-container"></iframe>
+                
+                <div class="info-cards">
+                    <div class="info-card">
+                        <h3>SUPER KID ROBOT</h3>
+                        <p>Control this advanced robot using the arrow keys. Complete missions and explore the robotic world.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>POWER LEVEL: HIGH</h3>
+                        <p>Current status: Ready for mission</p>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <div class="control-btn" id="left-btn">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                    <div class="control-btn" id="up-btn">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="control-btn" id="right-btn">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>
+                <span class="energy-label">Robot Energy</span>
+                <div class="power-bar">
+                    <div class="power-fill"></div>
+                </div>
+            </div>
+            <div class="social-icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-discord"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create glowing particles
+        document.addEventListener('DOMContentLoaded', () => {
+            const particlesContainer = document.getElementById('particles');
+            
+            // Create particles
+            for (let i = 0; i < 50; i++) {
+                createParticle(particlesContainer);
+            }
+            
+            // Menu item interaction
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+            
+            // Control buttons interaction
+            const controlBtns = document.querySelectorAll('.control-btn');
+            controlBtns.forEach(btn => {
+                btn.addEventListener('mousedown', () => {
+                    btn.style.transform = 'scale(0.95)';
+                });
+                
+                btn.addEventListener('mouseup', () => {
+                    btn.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Simulate button actions (just visual effects for demo)
+            document.getElementById('left-btn').addEventListener('click', () => {
+                flashButton('left-btn');
+            });
+            
+            document.getElementById('right-btn').addEventListener('click', () => {
+                flashButton('right-btn');
+            });
+            
+            document.getElementById('up-btn').addEventListener('click', () => {
+                flashButton('up-btn');
+            });
+        });
+        
+        function flashButton(id) {
+            const btn = document.getElementById(id);
+            btn.style.background = 'var(--primary)';
+            btn.querySelector('i').style.color = 'var(--dark)';
+            
+            setTimeout(() => {
+                btn.style.background = 'var(--glass)';
+                btn.querySelector('i').style.color = 'var(--light)';
+            }, 200);
+        }
+        
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random size between 2px and 6px
+            const size = Math.random() * 4 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            // Random starting position
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100 + 100;
+            particle.style.left = `${posX}%`;
+            particle.style.bottom = `${-posY}px`;
+            
+            // Random animation duration
+            const duration = Math.random() * 10 + 5;
+            particle.style.animation = `float ${duration}s infinite linear`;
+            
+            // Random delay
+            const delay = Math.random() * 5;
+            particle.style.animationDelay = `${delay}s`;
+            
+            container.appendChild(particle);
+        }
+    </script>
+</body>
+</html>
