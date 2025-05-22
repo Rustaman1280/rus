@@ -385,15 +385,15 @@ h2 {
 
 /* Placeholder album covers - Will be replaced with actual images */
 #cover-1 { background-image: url('../images/let.png'); }
-#cover-2 { background-image: linear-gradient(135deg, #f6d365, #fda085); }
-#cover-3 { background-image: linear-gradient(135deg, #ff9a9e, #fad0c4); }
-#cover-4 { background-image: linear-gradient(135deg, #a18cd1, #fbc2eb); }
-#cover-5 { background-image: linear-gradient(135deg, #84fab0, #8fd3f4); }
-#cover-6 { background-image: linear-gradient(135deg, #ff758c, #ff7eb3); }
-#cover-7 { background-image: linear-gradient(135deg, #fccb90, #d57eeb); }
-#cover-8 { background-image: linear-gradient(135deg, #f093fb, #f5576c); }
-#cover-9 { background-image: linear-gradient(135deg, #43e97b, #38f9d7); }
-#cover-10 { background-image: linear-gradient(135deg, #fa709a, #fee140); }
+#cover-2 { background-image: url('../images/march.png'); }
+#cover-3 { background-image: url('../images/kyu-kurarin.png'); }
+#cover-4 { background-image: url('../images/cut.png'); }
+#cover-5 { background-image: url('../images/otsukare.png'); }
+#cover-6 { background-image: url('../images/ochame.png'); }
+#cover-7 { background-image: url('../images/give.png'); }
+#cover-8 { background-image: url('../images/ela.png'); } 
+#cover-9 { background-image: url('../images/give.png'); }
+#cover-10 { background-image: url('../images/give.png'); }
 
 #mini-cover { background-image: linear-gradient(135deg, #6f86d6, #48c6ef); }
 #player-cover { background-image: linear-gradient(135deg, #6f86d6, #48c6ef); }
