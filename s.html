@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Web Speech API</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #hasil-teks { margin-top: 20px; padding: 15px; border: 1px solid #ccc; background: #f9f9f9; min-height: 50px; }
+    </style>
+</head>
+<body>
+
+    <h2>Demo Web Speech API (Bahasa Indonesia)</h2>
+    <button id="btn-start">Mulai Bicara</button>
+    <div id="hasil-teks">Hasil suara Anda akan muncul di sini...</div>
+
+    <script>
+        // 1. Mengecek apakah browser mendukung Web Speech API
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (SpeechRecognition) {
+            // 2. Inisialisasi API
+            const recognition = new SpeechRecognition();
+            
+            // 3. Pengaturan API
+            recognition.lang = 'id-ID'; // Mengatur bahasa deteksi ke Bahasa Indonesia
+            recognition.interimResults = false; // Ubah ke true jika ingin melihat teks saat masih berbicara
+
+            const btnStart = document.getElementById('btn-start');
+            const hasilTeks = document.getElementById('hasil-teks');
+
+            // 4. Ketika tombol diklik, mulai mendengarkan
+            btnStart.addEventListener('click', () => {
+                recognition.start();
+                hasilTeks.textContent = "Sedang mendengarkan... (Silakan bicara)";
+            });
+
+            // 5. Ketika browser selesai mendeteksi ucapan Anda
+            recognition.onresult = (event) => {
+                // Mengambil teks dari hasil rekaman
+                const teks = event.results[0][0].transcript;
+                hasilTeks.textContent = "Anda bilang: " + teks;
+            };
+
+            // 6. Penanganan jika terjadi error (misal mic tidak diizinkan)
+            recognition.onerror = (event) => {
+                hasilTeks.textContent = "Terjadi kesalahan: " + event.error;
+            };
+
+        } else {
+            // Jika browser tidak mendukung (misal Firefox versi lama)
+            document.getElementById('hasil-teks').textContent = "Maaf, browser Anda tidak mendukung Web Speech API.";
+        }
+    </script>
+
+</body>
+</html>
