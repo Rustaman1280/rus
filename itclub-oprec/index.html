@@ -1,388 +1,1747 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>IT Club | Links</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Recruitment IT Club — SMKN 1 Garut 2026/2027</title>
+  <meta name="description"
+    content="Website Pendaftaran Terbuka Anggota Baru IT Club SMKN 1 Garut Tahun Ajaran 2026/2027. Bergabunglah dengan divisi Web Dev, Multimedia, Networking, dan Competitive Programming.">
+
+  <!-- ==========================================
+       GOOGLE FONTS (Inter & Space Grotesk)
+       ========================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- ==========================================
+       SWISS STYLE DESIGN SYSTEM (DARK EDITION)
+       ========================================== -->
   <style>
+    /* ------------------------------------------
+       1. COLOR & VARIABLES TOKEN (CUSTOM PALETTE)
+       ------------------------------------------ */
     :root {
-      --yellow: #f7d501;
-      --indigo: #4e5a92;
-      --orange: #f53701;
-      --mint: #3eb07c;
-      --bg: #0c0d14;
-      --text: #f8f8fb;
-      --muted: #b8bac8;
+      --bg-main: #292929;
+      /* Main Dark Background */
+      --bg-card: #202020;
+      /* Dark Card Background */
+      --bg-input: #1C1C1C;
+      /* Dark Input Fields */
+      --text-main: #f1eeeb;
+      /* Soft Off-White Primary Text */
+      --text-muted: #A8A5A2;
+      /* Muted Secondary Text */
+      --accent-yellow: #f7d501;
+      /* Swiss Accent Yellow */
+      --accent-dark-text: #1A1A1A;
+      /* Text on Accent Yellow */
+      --border-color: #f1eeeb;
+      /* High Contrast 1px Borders */
+      --border-light: #444444;
+      /* Secondary Divider Lines */
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'Space Grotesk', monospace;
+
+      --grid-gap: 24px;
+      --container-max: 1280px;
     }
 
-    * {
+    /* ------------------------------------------
+       2. BASE RESET & TYPOGRAPHY RULES
+       ------------------------------------------ */
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      border-radius: 0 !important;
+      /* Strict Swiss Rule: No rounded corners */
+      box-shadow: none !important;
+      /* Strict Swiss Rule: No shadows */
     }
 
-    html, body {
-      height: 100%;
-      overflow-x: hidden;
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
-      min-height: 100vh;
-      min-height: 100dvh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      padding: 0;
-      position: relative;
+      line-height: 1.5;
+      overflow-x: hidden;
     }
 
-    /* Animated gradient background */
-    .bg-glow {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
+    /* Selection Highlighting */
+    ::selection {
+      background-color: var(--accent-yellow);
+      color: var(--accent-dark-text);
     }
 
-    .bg-glow::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      background: 
-        radial-gradient(circle at 20% 10%, rgba(247, 213, 1, 0.15), transparent 35%),
-        radial-gradient(circle at 80% 20%, rgba(62, 176, 124, 0.18), transparent 30%),
-        radial-gradient(circle at 70% 80%, rgba(78, 90, 146, 0.2), transparent 35%),
-        radial-gradient(circle at 30% 90%, rgba(245, 55, 1, 0.12), transparent 30%);
-      animation: bgPulse 12s ease-in-out infinite;
-    }
-
-    @keyframes bgPulse {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-3%, -3%) scale(1.05); }
-    }
-
-    /* Grid overlay */
-    .grid-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,0.5), transparent);
-      z-index: 1;
-    }
-
-    /* Main container */
-    .container {
-      position: relative;
-      z-index: 2;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 48px 24px 32px;
-      max-width: 100%;
-      width: 100%;
-    }
-
-    /* Header */
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .avatar {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 20px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, var(--yellow), var(--orange));
-      padding: 4px;
-      box-shadow: 
-        0 0 40px rgba(247, 213, 1, 0.3),
-        0 0 80px rgba(245, 55, 1, 0.15);
-      animation: glowPulse 4s ease-in-out infinite;
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      background: var(--bg);
-      display: block;
-    }
-
-    @keyframes glowPulse {
-      0%, 100% { box-shadow: 0 0 40px rgba(247, 213, 1, 0.3), 0 0 80px rgba(245, 55, 1, 0.15); }
-      50% { box-shadow: 0 0 50px rgba(247, 213, 1, 0.45), 0 0 100px rgba(245, 55, 1, 0.25); }
-    }
-
-    header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, var(--text), var(--yellow));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    header p {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-      max-width: 300px;
-      margin: 0 auto;
-    }
-
-    /* Links */
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      flex: 1;
-    }
-
-    .link-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 50px;
-      padding: 14px 20px 14px 14px;
+    a {
+      color: inherit;
       text-decoration: none;
-      color: var(--text);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
     }
 
-    .link-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50px;
-      padding: 1px;
-      background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1), transparent);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
     }
 
-    .link-card:active {
-      transform: scale(0.98);
-      background: rgba(255, 255, 255, 0.08);
+    /* ------------------------------------------
+       3. UTILITY & GRID CLASSES
+       ------------------------------------------ */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    .link-card:active::before {
-      opacity: 1;
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
     }
 
-    /* Glow accent per card */
-    .link-card.discord { box-shadow: inset 0 0 30px rgba(78, 90, 146, 0.15); }
-    .link-card.discord:active { box-shadow: inset 0 0 40px rgba(78, 90, 146, 0.3), 0 0 30px rgba(78, 90, 146, 0.2); }
-
-    .link-card.tiktok { box-shadow: inset 0 0 30px rgba(62, 176, 124, 0.1); }
-    .link-card.tiktok:active { box-shadow: inset 0 0 40px rgba(62, 176, 124, 0.25), 0 0 30px rgba(62, 176, 124, 0.15); }
-
-    .link-card.instagram { box-shadow: inset 0 0 30px rgba(245, 55, 1, 0.1); }
-    .link-card.instagram:active { box-shadow: inset 0 0 40px rgba(245, 55, 1, 0.25), 0 0 30px rgba(245, 55, 1, 0.15); }
-
-    .link-card.website { box-shadow: inset 0 0 30px rgba(247, 213, 1, 0.1); }
-    .link-card.website:active { box-shadow: inset 0 0 40px rgba(247, 213, 1, 0.25), 0 0 30px rgba(247, 213, 1, 0.15); }
-
-    .icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      overflow: hidden;
-      background: rgba(255,255,255,0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .swiss-border-b {
+      border-bottom: 1px solid var(--border-color);
     }
 
-    .icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
+    .swiss-border-t {
+      border-top: 1px solid var(--border-color);
     }
 
-    .text {
-      flex: 1;
-      min-width: 0;
+    .swiss-border-l {
+      border-left: 1px solid var(--border-color);
     }
 
-    .text h3 {
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 2px;
-      letter-spacing: -0.01em;
+    .swiss-border-r {
+      border-right: 1px solid var(--border-color);
     }
 
-    .text span {
-      color: var(--muted);
-      font-size: 13px;
+    .tag-mono {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-accent {
+      background-color: var(--accent-yellow);
+      color: var(--accent-dark-text);
+      padding: 2px 8px;
+      display: inline-block;
+      font-weight: 800;
+    }
+
+    .section-title-wrapper {
+      padding: 40px 0 20px 0;
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-yellow);
+      margin-bottom: 8px;
       display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
-    .arrow {
-      width: 24px;
-      height: 24px;
-      flex-shrink: 0;
-      opacity: 0.4;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+    .section-heading {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--text-main);
     }
 
-    .link-card:active .arrow {
-      opacity: 0.8;
-      transform: translateX(3px);
+    /* ------------------------------------------
+       4. TOP ANNOUNCEMENT TICKER
+       ------------------------------------------ */
+    .top-bar {
+      background-color: #1A1A1A;
+      color: var(--text-main);
+      padding: 8px 0;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 24px 0 16px;
-      color: var(--muted);
-      font-size: 12px;
-      opacity: 0.7;
+    .top-bar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    footer span {
+    .status-live {
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    /* Floating particles */
-    .particle {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      background: var(--yellow);
-      border-radius: 50%;
-      opacity: 0.4;
-      pointer-events: none;
-      z-index: 1;
-      animation: float 20s linear infinite;
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-yellow);
+      display: inline-block;
     }
 
-    .particle:nth-child(2) { left: 15%; top: 20%; background: var(--mint); animation-delay: -5s; animation-duration: 25s; }
-    .particle:nth-child(3) { left: 85%; top: 30%; background: var(--indigo); animation-delay: -10s; animation-duration: 22s; }
-    .particle:nth-child(4) { left: 70%; top: 70%; background: var(--orange); animation-delay: -15s; animation-duration: 28s; }
-    .particle:nth-child(5) { left: 25%; top: 80%; background: var(--yellow); animation-delay: -8s; animation-duration: 24s; width: 3px; height: 3px; }
+    /* ------------------------------------------
+       5. HEADER & NAVIGATION
+       ------------------------------------------ */
+    .site-header {
+      background-color: var(--bg-main);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-    @keyframes float {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.4; }
-      90% { opacity: 0.4; }
-      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      height: 72px;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-right: 24px;
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-box span {
+      font-family: var(--font-mono);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      display: flex;
+    }
+
+    .nav-links a {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-left: 1px solid var(--border-color);
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--accent-yellow);
+      color: var(--accent-dark-text);
+    }
+
+    .btn-nav-cta {
+      background-color: var(--accent-yellow) !important;
+      color: var(--accent-dark-text) !important;
+    }
+
+    .btn-nav-cta:hover {
+      background-color: var(--text-main) !important;
+      color: var(--bg-main) !important;
+    }
+
+    /* ------------------------------------------
+       6. HERO SECTION
+       ------------------------------------------ */
+    .hero-section {
+      padding: 60px 0 80px 0;
+    }
+
+    .hero-title {
+      grid-column: span 12;
+      font-size: clamp(2.8rem, 6.5vw, 5.8rem);
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      margin-bottom: 40px;
+    }
+
+    .hero-title .highlight-yellow {
+      color: var(--accent-yellow);
+    }
+
+    .hero-left {
+      grid-column: span 7;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 32px;
+      max-width: 90%;
+      color: var(--text-main);
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background-color: var(--accent-yellow);
+      color: var(--accent-dark-text);
+      padding: 20px 32px;
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      width: fit-content;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-cta:hover {
+      background-color: var(--text-main);
+      color: var(--bg-main);
+    }
+
+    .btn-cta .arrow {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+    }
+
+    .hero-right {
+      grid-column: span 5;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .stat-item {
+      border-top: 2px solid var(--accent-yellow);
+      padding-top: 12px;
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 900;
+      font-family: var(--font-mono);
+      line-height: 1;
+      color: var(--accent-yellow);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ------------------------------------------
+       7. SECTION: ABOUT IT CLUB
+       ------------------------------------------ */
+    .about-section {
+      padding: 80px 0;
+      background-color: var(--bg-card);
+    }
+
+    .about-grid-content {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
+      margin-top: 40px;
+    }
+
+    .about-lead {
+      grid-column: span 5;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-main);
+    }
+
+    .about-body {
+      grid-column: span 7;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    .about-body p {
+      margin-bottom: 20px;
+    }
+
+    .values-row {
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border-color);
+      margin-top: 40px;
+    }
+
+    .value-card {
+      padding: 32px 24px 16px 0;
+      border-right: 1px solid var(--border-light);
+    }
+
+    .value-card:last-child {
+      border-right: none;
+    }
+
+    .value-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    /* ------------------------------------------
+       8. SECTION: DIVISIONS (GRID LAYOUT)
+       ------------------------------------------ */
+    .divisions-section {
+      padding: 80px 0;
+    }
+
+    .division-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: -1px;
+      margin-top: 40px;
+      border: 1px solid var(--border-color);
+      background-color: var(--border-color);
+      /* Grid line trick */
+    }
+
+    .division-card {
+      background-color: var(--bg-card);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 360px;
+      transition: background-color 0.2s ease;
+    }
+
+    .division-card:hover {
+      background-color: #2D2D2D;
+    }
+
+    .division-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .division-code {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-yellow);
+    }
+
+    .division-name {
+      font-size: 1.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+
+    .division-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .division-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      border-top: 1px solid var(--border-light);
+      padding-top: 20px;
+    }
+
+    .skill-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      padding: 4px 10px;
+      border: 1px solid var(--border-light);
+      text-transform: uppercase;
+    }
+
+    /* ------------------------------------------
+       9. SECTION: REGISTRATION FORM
+       ------------------------------------------ */
+    .form-section {
+      padding: 80px 0 100px 0;
+      background-color: var(--bg-card);
+    }
+
+    .form-grid-layout {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
+      margin-top: 40px;
+    }
+
+    .form-sidebar {
+      grid-column: span 4;
+    }
+
+    .sidebar-sticky {
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-info-box {
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      background-color: var(--bg-main);
+    }
+
+    .sidebar-info-box h4 {
+      font-size: 1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--accent-yellow);
+    }
+
+    .sidebar-info-box ul {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .sidebar-info-box li {
+      margin-bottom: 12px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .sidebar-info-box li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent-yellow);
+      font-weight: bold;
+    }
+
+    .form-main-container {
+      grid-column: span 8;
+      border: 1px solid var(--border-color);
+      padding: 40px;
+      background-color: var(--bg-main);
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-main);
+    }
+
+    .form-label .req {
+      color: var(--accent-yellow);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-light);
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      background-color: #222222;
+      border-color: var(--accent-yellow);
+    }
+
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='%23f7d501' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      cursor: pointer;
+    }
+
+    .form-select option {
+      background-color: #1C1C1C;
+      color: #f1eeeb;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    /* Form Validation Error State */
+    .form-group.has-error .form-input,
+    .form-group.has-error .form-select,
+    .form-group.has-error .form-textarea {
+      border-color: var(--accent-yellow);
+      background-color: #383418;
+    }
+
+    .error-text {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-yellow);
+      margin-top: 6px;
+      display: none;
+      text-transform: uppercase;
+    }
+
+    .form-group.has-error .error-text {
+      display: block;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: var(--accent-yellow);
+      color: var(--accent-dark-text);
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--text-main);
+      color: var(--bg-main);
+    }
+
+    /* ------------------------------------------
+       10. SWISS MODAL CONFIRMATION
+       ------------------------------------------ */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(10, 10, 10, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background-color: var(--bg-card);
+      border: 2px solid var(--border-color);
+      max-width: 640px;
+      width: 100%;
+      padding: 40px;
+      position: relative;
+      color: var(--text-main);
+    }
+
+    .modal-header-bar {
+      height: 6px;
+      background-color: var(--accent-yellow);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .modal-status-badge {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-yellow);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .modal-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .modal-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 0.9rem;
+    }
+
+    .modal-data-table th,
+    .modal-data-table td {
+      padding: 10px 12px;
+      border: 1px solid var(--border-light);
+      text-align: left;
+    }
+
+    .modal-data-table th {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      background-color: var(--bg-main);
+      color: var(--accent-yellow);
+      width: 35%;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .btn-modal-close {
+      flex: 1;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      padding: 14px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-modal-wa {
+      flex: 1;
+      background-color: var(--accent-yellow);
+      color: var(--accent-dark-text);
+      padding: 14px;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* ------------------------------------------
+       11. FOOTER SECTION
+       ------------------------------------------ */
+    .site-footer {
+      background-color: #1A1A1A;
+      color: var(--text-main);
+      padding: 80px 0 40px 0;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--grid-gap);
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 60px;
+    }
+
+    .footer-col-1 {
+      grid-column: span 4;
+    }
+
+    .footer-col-2 {
+      grid-column: span 3;
+    }
+
+    .footer-col-3 {
+      grid-column: span 3;
+    }
+
+    .footer-col-4 {
+      grid-column: span 2;
+    }
+
+    .footer-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent-yellow);
+      margin-bottom: 16px;
+    }
+
+    .footer-brand {
+      font-size: 1.6rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-yellow);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* ------------------------------------------
+       12. RESPONSIVE BREAKPOINTS (CSS GRID)
+       ------------------------------------------ */
+    @media (max-width: 992px) {
+      .hero-left {
+        grid-column: span 12;
+        margin-bottom: 40px;
+      }
+
+      .hero-right {
+        grid-column: span 12;
+      }
+
+      .about-lead {
+        grid-column: span 12;
+      }
+
+      .about-body {
+        grid-column: span 12;
+      }
+
+      .form-sidebar {
+        grid-column: span 12;
+        margin-bottom: 32px;
+      }
+
+      .form-main-container {
+        grid-column: span 12;
+      }
+
+      .division-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-col-1 {
+        grid-column: span 12;
+        margin-bottom: 24px;
+      }
+
+      .footer-col-2 {
+        grid-column: span 6;
+      }
+
+      .footer-col-3 {
+        grid-column: span 6;
+      }
+
+      .footer-col-4 {
+        grid-column: span 12;
+        margin-top: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      /* Mobile navbar simplification */
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .values-row {
+        grid-template-columns: 1fr;
+      }
+
+      .value-card {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-main-container {
+        padding: 24px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="bg-glow"></div>
-  <div class="grid-overlay"></div>
-  
-  <!-- Floating particles -->
-  <div class="particle" style="left: 10%; top: 50%;"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
-  <div class="particle"></div>
 
-  <div class="container">
-    <header>
-      <div class="avatar">
-        <!-- Ganti src dengan logo IT Club -->
-        <img src="logo.png" alt="IT Club Logo" />
+  <!-- ==========================================
+       TOP TICKER ANNOUNCEMENT
+       ========================================== -->
+  <div class="top-bar swiss-border-b">
+    <div class="container top-bar-content">
+      <div>SMKN 1 GARUT // RECRUITMENT 2026/2027</div>
+      <div class="status-live">
+        <span class="status-dot"></span> STATUS: PENDAFTARAN DIBUKA
       </div>
-      <h1>IT Club</h1>
-      <p>Tech community of builders, learners & creators</p>
-    </header>
-
-    <div class="links">
-      <a class="link-card discord" href="https://discord.gg/Knz6pk8kM9" target="_blank" rel="noreferrer">
-        <div class="icon">
-          <!-- Ganti src dengan icon Discord -->
-          <img src="discord.png" alt="Discord" />
-        </div>
-        <div class="text">
-          <h3>Discord</h3>
-          <span>Join our community server</span>
-        </div>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </a>
-
-      <a class="link-card tiktok" href="https://www.tiktok.com/itclubsmkn1garut" target="_blank" rel="noreferrer">
-        <div class="icon">
-          <!-- Ganti src dengan icon TikTok -->
-          <img src="tiktok.png" alt="TikTok" />
-        </div>
-        <div class="text">
-          <h3>TikTok</h3>
-          <span>Tips & behind the scenes</span>
-        </div>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </a>
-
-      <a class="link-card instagram" href="https://www.instagram.com/itclubsmkn1garut" target="_blank" rel="noreferrer">
-        <div class="icon">
-          <!-- Ganti src dengan icon Instagram -->
-          <img src="instagram.png" alt="Instagram" />
-        </div>
-        <div class="text">
-          <h3>Instagram</h3>
-          <span>Events & highlights</span>
-        </div>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </a>
-
-      <a class="link-card website" href="https://it.smknegeri1garut.sch.id" target="_blank" rel="noreferrer">
-        <div class="icon">
-          <!-- Ganti src dengan icon Website -->
-          <img src="g.png" alt="Website" />
-        </div>
-        <div class="text">
-          <h3>Website</h3>
-          <span>Programs & resources</span>
-        </div>
-        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </a>
     </div>
-
-    <footer>
-      <span>✦ IT Club — stay curious, build bold ✦</span>
-    </footer>
   </div>
+
+  <!-- ==========================================
+       HEADER & NAVIGATION
+       ========================================== -->
+  <header class="site-header swiss-border-b">
+    <div class="container">
+      <nav class="nav-wrapper">
+        <a href="#" class="logo-box">
+          <span>ITC/26</span>
+          <span class="tag-accent">OPREC</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about">[01] TENTANG</a></li>
+          <li><a href="#divisi">[02] DIVISI</a></li>
+          <li><a href="#form">[03] DAFTAR</a></li>
+          <li><a href="#kontak">[04] KONTAK</a></li>
+          <li><a href="#form" class="btn-nav-cta">DAFTAR SEKARANG</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================
+         HERO SECTION
+         ========================================== -->
+    <section class="hero-section swiss-border-b">
+      <div class="container">
+        <div class="grid-12">
+
+          <h1 class="hero-title">
+            OPEN RECRUITMENT<br>
+            <span class="highlight-yellow">IT CLUB</span> SMKN 1 GARUT
+          </h1>
+
+          <div class="hero-left">
+            <p class="hero-description">
+              Wadah pengembangan potensi siswa SMKN 1 Garut di bidang teknologi informasi, rekayasa perangkat lunak,
+              jaringan komputer, dan media kreatif.
+            </p>
+            <a href="#form" class="btn-cta">
+              <span>DAFTAR ANGGOTA BARU</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+
+          <div class="hero-right">
+            <div>
+              <div class="tag-mono" style="color: var(--accent-yellow); margin-bottom: 8px;">// RECRUITMENT METRICS
+              </div>
+              <h3 style="font-size: 1.3rem; font-weight: 800; text-transform: uppercase;">TAHUN AJARAN 2026/2027</h3>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
+                Membangun generasi talenta digital yang presisi, berdisiplin tinggi, dan siap bersaing di kancah
+                nasional.
+              </p>
+            </div>
+
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-number">04</div>
+                <div class="stat-label">DIVISI KEAHLIAN</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">ALUMNI & ANGGOTA</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 1: TENTANG IT CLUB
+         ========================================== -->
+    <section id="about" class="about-section swiss-border-b">
+      <div class="container">
+        <div class="section-title-wrapper swiss-border-b">
+          <span class="section-num">[ 01 ]</span>
+          <h2 class="section-heading">TENTANG IT CLUB</h2>
+        </div>
+
+        <div class="about-grid-content">
+          <div class="about-lead">
+            IT Club SMKN 1 Garut adalah organisasi ekstrakurikuler berbasis riset, karya teknis, dan kompetisi teknologi
+            informasi.
+          </div>
+          <div class="about-body">
+            <p>
+              Didirikan sebagai pusat inkubasi bakat digital di SMKN 1 Garut, IT Club berfokus pada pembekalan
+              keterampilan praktis di luar kurikulum reguler. Kami melatih siswa untuk menguasai standar pemrograman
+              modern, pengelolaan jaringan, hingga desain produk digital.
+            </p>
+            <p>
+              Setiap anggota akan dibimbing melalui alur kerja nyata (real-world workflow), proyek kolaboratif, serta
+              persiapan menghadapi LKS (Lomba Kompetensi Siswa) dan berbagai hackathon tingkat regional maupun nasional.
+            </p>
+          </div>
+
+          <div class="values-row">
+            <div class="value-card">
+              <div class="tag-mono" style="color: var(--accent-yellow);">01. PRESISI</div>
+              <h3 class="value-title">STANDAR INDUSTRI</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Mengintegrasikan alur kerja teknis profesional dan kode yang bersih (clean code).
+              </p>
+            </div>
+            <div class="value-card">
+              <div class="tag-mono" style="color: var(--accent-yellow);">02. KOLABORASI</div>
+              <h3 class="value-title">PROYEK TIM</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Pengalaman langsung membangun perangkat lunak dan infrastruktur secara kolaboratif.
+              </p>
+            </div>
+            <div class="value-card">
+              <div class="tag-mono" style="color: var(--accent-yellow);">03. PRESTASI</div>
+              <h3 class="value-title">KOMPETISI</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Fokus pembinaan intensif untuk perlombaan LKS, Hackathon, dan IT Olympiad.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: DIVISI KEAHLIAN
+         ========================================== -->
+    <section id="divisi" class="divisions-section swiss-border-b">
+      <div class="container">
+        <div class="section-title-wrapper swiss-border-b">
+          <span class="section-num">[ 02 ]</span>
+          <h2 class="section-heading">DIVISI KEAHLIAN</h2>
+        </div>
+
+        <div class="division-grid">
+
+          <!-- Divisi 1: Web Development -->
+          <div class="division-card">
+            <div>
+              <div class="division-top">
+                <span class="division-code">DIV-01</span>
+                <span class="tag-mono tag-accent">FRONTEND & BACKEND</span>
+              </div>
+              <h3 class="division-name">WEB DEVELOPMENT</h3>
+              <p class="division-desc">
+                Fokus pada pengembangan aplikasi web modern, arsitektur frontend responsif, integrasi API, dan manajemen
+                basis data.
+              </p>
+            </div>
+            <ul class="division-skills">
+              <li class="skill-tag">HTML5 / CSS3</li>
+              <li class="skill-tag">JAVASCRIPT (ES6+)</li>
+              <li class="skill-tag">NODE.JS</li>
+              <li class="skill-tag">REST API</li>
+              <li class="skill-tag">GIT</li>
+            </ul>
+          </div>
+
+          <!-- Divisi 2: Multimedia & Design -->
+          <div class="division-card">
+            <div>
+              <div class="division-top">
+                <span class="division-code">DIV-02</span>
+                <span class="tag-mono tag-accent">UI/UX & MEDIA</span>
+              </div>
+              <h3 class="division-name">MULTIMEDIA & DESIGN</h3>
+              <p class="division-desc">
+                Eksplorasi perancangan antarmuka pengguna (UI/UX), tata letak tipografi, identitas visual brand, serta
+                videografi & motion graphics.
+              </p>
+            </div>
+            <ul class="division-skills">
+              <li class="skill-tag">FIGMA</li>
+              <li class="skill-tag">UI/UX RESEARCH</li>
+              <li class="skill-tag">VECTOR GRAPHICS</li>
+              <li class="skill-tag">VIDEO EDITING</li>
+            </ul>
+          </div>
+
+          <!-- Divisi 3: Jaringan & Security -->
+          <div class="division-card">
+            <div>
+              <div class="division-top">
+                <span class="division-code">DIV-03</span>
+                <span class="tag-mono tag-accent">SYSADMIN & NETWORK</span>
+              </div>
+              <h3 class="division-name">JARINGAN & SECURITY</h3>
+              <p class="division-desc">
+                Konfigurasi infrastruktur jaringan komputer, server Linux, manajemen cloud, serta dasar-dasar keamanan
+                siber (cyber security).
+              </p>
+            </div>
+            <ul class="division-skills">
+              <li class="skill-tag">LINUX SERVER</li>
+              <li class="skill-tag">ROUTER & SWITCHING</li>
+              <li class="skill-tag">NETWORK SECURITY</li>
+              <li class="skill-tag">DOCKER BASICS</li>
+            </ul>
+          </div>
+
+          <!-- Divisi 4: Competitive Programming -->
+          <div class="division-card">
+            <div>
+              <div class="division-top">
+                <span class="division-code">DIV-04</span>
+                <span class="tag-mono tag-accent">ALGORITHM & LOGIC</span>
+              </div>
+              <h3 class="division-name">COMPETITIVE PROGRAMMING</h3>
+              <p class="division-desc">
+                Pemecahan masalah kompleks dengan algoritma efisien, struktur data, matematika diskrit, dan persiapan
+                lomba pemrograman terstruktur.
+              </p>
+            </div>
+            <ul class="division-skills">
+              <li class="skill-tag">C++ / PYTHON</li>
+              <li class="skill-tag">DATA STRUCTURES</li>
+              <li class="skill-tag">ALGORITHMS</li>
+              <li class="skill-tag">PROBLEM SOLVING</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: FORM PENDAFTARAN
+         ========================================== -->
+    <section id="form" class="form-section swiss-border-b">
+      <div class="container">
+        <div class="section-title-wrapper swiss-border-b">
+          <span class="section-num">[ 03 ]</span>
+          <h2 class="section-heading">FORMULIR PENDAFTARAN</h2>
+        </div>
+
+        <div class="form-grid-layout">
+
+          <!-- Sidebar Informasi -->
+          <div class="form-sidebar">
+            <div class="sidebar-sticky">
+              <div class="sidebar-info-box">
+                <h4>SYARAT PENDAFTARAN</h4>
+                <ul>
+                  <li>Siswa aktif SMKN 1 Garut kelas X atau XI.</li>
+                  <li>Memiliki komitmen tinggi untuk belajar dan berorganisasi.</li>
+                  <li>Memiliki perangkat laptop pribadi (diutamakan).</li>
+                  <li>Mengisi data pendaftaran dengan benar dan jujur.</li>
+                </ul>
+                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-light);"
+                  class="tag-mono">
+                  INFO: Pendaftaran tidak dipungut biaya (GRATIS).
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Input Utama -->
+          <div class="form-main-container">
+            <form id="registrationForm" novalidate>
+
+              <!-- Nama Lengkap -->
+              <div class="form-group" id="group-nama">
+                <label class="form-label" for="nama">
+                  NAMA LENGKAP <span class="req">*</span>
+                </label>
+                <input type="text" id="nama" name="nama" class="form-input" placeholder="Contoh: Muhammad Rizky"
+                  required>
+                <span class="error-text" id="err-nama">✕ Wajib diisi (minimal 3 karakter)</span>
+              </div>
+
+              <!-- Baris 2: Kelas & NISN -->
+              <div class="form-row-2">
+                <!-- Kelas -->
+                <div class="form-group" id="group-kelas">
+                  <label class="form-label" for="kelas">
+                    KELAS <span class="req">*</span>
+                  </label>
+                  <select id="kelas" name="kelas" class="form-select" required>
+                    <option value="">-- Pilih Kelas --</option>
+                    <option value="X PPLG 1">X PPLG 1</option>
+                    <option value="X PPLG 2">X PPLG 2</option>
+                    <option value="X TJKT 1">X TJKT 1</option>
+                    <option value="X TJKT 2">X TJKT 2</option>
+                    <option value="X DKV 1">X DKV 1</option>
+                    <option value="X DKV 2">X DKV 2</option>
+                    <option value="XI PPLG 1">XI PPLG 1</option>
+                    <option value="XI PPLG 2">XI PPLG 2</option>
+                    <option value="XI TJKT 1">XI TJKT 1</option>
+                    <option value="XI TJKT 2">XI TJKT 2</option>
+                    <option value="LAINNYA">Lainnya (Jurusan Lain)</option>
+                  </select>
+                  <span class="error-text" id="err-kelas">✕ Silakan pilih kelas Anda</span>
+                </div>
+
+                <!-- NISN -->
+                <div class="form-group" id="group-nisn">
+                  <label class="form-label" for="nisn">
+                    NISN <span class="req">*</span>
+                  </label>
+                  <input type="text" id="nisn" name="nisn" class="form-input" placeholder="10 digit angka NISN"
+                    maxlength="10" required>
+                  <span class="error-text" id="err-nisn">✕ Validasi: Harus 10 digit angka</span>
+                </div>
+              </div>
+
+              <!-- Baris 3: WhatsApp & Divisi -->
+              <div class="form-row-2">
+                <!-- Nomor WhatsApp -->
+                <div class="form-group" id="group-whatsapp">
+                  <label class="form-label" for="whatsapp">
+                    NOMOR WHATSAPP <span class="req">*</span>
+                  </label>
+                  <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="Contoh: 081234567890"
+                    required>
+                  <span class="error-text" id="err-whatsapp">✕ Format nomor WA tidak valid (min 10 digit angka)</span>
+                </div>
+
+                <!-- Divisi Pilihan -->
+                <div class="form-group" id="group-divisi">
+                  <label class="form-label" for="divisi_pilihan">
+                    DIVISI YANG DIPILIH <span class="req">*</span>
+                  </label>
+                  <select id="divisi_pilihan" name="divisi_pilihan" class="form-select" required>
+                    <option value="">-- Pilih Divisi Keahlian --</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Multimedia & Design">Multimedia & Design</option>
+                    <option value="Jaringan & Security">Jaringan & Security</option>
+                    <option value="Competitive Programming">Competitive Programming</option>
+                  </select>
+                  <span class="error-text" id="err-divisi">✕ Silakan pilih divisi yang diminati</span>
+                </div>
+              </div>
+
+              <!-- Alasan Masuk IT Club -->
+              <div class="form-group" id="group-alasan-itc">
+                <label class="form-label" for="alasan_itc">
+                  ALASAN INGIN BERGABUNG KE IT CLUB <span class="req">*</span>
+                </label>
+                <textarea id="alasan_itc" name="alasan_itc" class="form-textarea"
+                  placeholder="Jelaskan motivasi dan tujuan Anda bergabung dengan IT Club SMKN 1 Garut..."
+                  required></textarea>
+                <span class="error-text" id="err-alasan-itc">✕ Wajib diisi (minimal 10 karakter)</span>
+              </div>
+
+              <!-- Alasan Memilih Divisi -->
+              <div class="form-group" id="group-alasan-divisi">
+                <label class="form-label" for="alasan_divisi">
+                  ALASAN MEMILIH DIVISI TERSEBUT <span class="req">*</span>
+                </label>
+                <textarea id="alasan_divisi" name="alasan_divisi" class="form-textarea"
+                  placeholder="Jelaskan ketertarikan atau pengalaman Anda di bidang divisi pilihan..."
+                  required></textarea>
+                <span class="error-text" id="err-alasan-divisi">✕ Wajib diisi (minimal 10 karakter)</span>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn-submit">
+                <span>KIRIM PENDAFTARAN SEKARANG</span>
+                <span style="font-family: var(--font-mono);">[ → ]</span>
+              </button>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       FOOTER SECTION
+       ========================================== -->
+  <footer id="kontak" class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Col 1: Identity -->
+        <div class="footer-col-1">
+          <div class="footer-title">// ORGANISASI</div>
+          <div class="footer-brand">IT CLUB SMKN 1 GARUT</div>
+          <p class="footer-text">
+            Ekstrakurikuler Teknologi Informasi & Komunikasi SMKN 1 Garut.<br>
+            Jl. Cimanuk No. 309, Tarogong Kidul, Kab. Garut, Jawa Barat 44151.
+          </p>
+        </div>
+
+        <!-- Col 2: Navigation -->
+        <div class="footer-col-2">
+          <div class="footer-title">// TAUTAN PINTAS</div>
+          <ul class="footer-links">
+            <li><a href="#about">Tentang IT Club</a></li>
+            <li><a href="#divisi">Divisi Keahlian</a></li>
+            <li><a href="#form">Form Pendaftaran</a></li>
+            <li><a href="https://smkn1garut.sch.id" target="_blank" rel="noopener">Website SMKN 1 Garut ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Contact Person -->
+        <div class="footer-col-3">
+          <div class="footer-title">// KONTAK PANITIA</div>
+          <ul class="footer-links">
+            <li><a href="https://wa.me/6281234567890" target="_blank">Ketua Pelaksana: 0812-3456-7890</a></li>
+            <li><a href="https://wa.me/6289876543210" target="_blank">Humas Oprec: 0898-7654-3210</a></li>
+            <li><a href="mailto:itclub@smkn1garut.sch.id">Email: itclub@smkn1garut.sch.id</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Social Media -->
+        <div class="footer-col-4">
+          <div class="footer-title">// MEDIA SOSIAL</div>
+          <ul class="footer-links">
+            <li><a href="https://instagram.com" target="_blank">Instagram ↗</a></li>
+            <li><a href="https://github.com" target="_blank">GitHub Org ↗</a></li>
+            <li><a href="https://youtube.com" target="_blank">YouTube ↗</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 IT CLUB SMKN 1 GARUT. HAK CIPTA DILINDUNGI.</div>
+        <div>DESIGN SYSTEM: INTERNATIONAL TYPOGRAPHIC STYLE</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       SWISS MODAL CONFIRMATION (DIALOG)
+       ========================================== -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-card">
+      <div class="modal-header-bar"></div>
+
+      <span class="modal-status-badge">[ STATUS: SUCCESS // REGISTRATION REGISTERED ]</span>
+      <h3 class="modal-title">PENDAFTARAN BERHASIL!</h3>
+      <p style="font-size: 0.95rem; color: var(--text-muted);">
+        Data pendaftaran Anda telah tercatat dalam sistem seleksi IT Club SMKN 1 Garut. Simpan nomor pendaftaran Anda di
+        bawah ini:
+      </p>
+
+      <table class="modal-data-table">
+        <tr>
+          <th>KODE REGISTRASI</th>
+          <td id="res-kode" style="font-family: var(--font-mono); font-weight: 800; color: var(--accent-yellow);">
+            ITC-2026-XXXX</td>
+        </tr>
+        <tr>
+          <th>NAMA LENGKAP</th>
+          <td id="res-nama">-</td>
+        </tr>
+        <tr>
+          <th>KELAS / NISN</th>
+          <td id="res-kelas-nisn">-</td>
+        </tr>
+        <tr>
+          <th>DIVISI PILIHAN</th>
+          <td id="res-divisi" style="font-weight: 700;">-</td>
+        </tr>
+      </table>
+
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
+        Silakan bergabung ke grup WhatsApp calon anggota untuk mendapatkan jadwal wawancara & tes orientasi divisi.
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn-modal-close" onclick="closeModal()">TUTUP</button>
+        <a href="https://chat.whatsapp.com" target="_blank" class="btn-modal-wa">GABUNG GRUP WA ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       VANILLA JAVASCRIPT (INTERACTION & VALIDATION)
+       ========================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('registrationForm');
+
+      // Fields elements
+      const namaInput = document.getElementById('nama');
+      const kelasSelect = document.getElementById('kelas');
+      const nisnInput = document.getElementById('nisn');
+      const waInput = document.getElementById('whatsapp');
+      const divisiSelect = document.getElementById('divisi_pilihan');
+      const alasanItcText = document.getElementById('alasan_itc');
+      const alasanDivisiText = document.getElementById('alasan_divisi');
+
+      // Modal elements
+      const successModal = document.getElementById('successModal');
+      const resKode = document.getElementById('res-kode');
+      const resNama = document.getElementById('res-nama');
+      const resKelasNisn = document.getElementById('res-kelas-nisn');
+      const resDivisi = document.getElementById('res-divisi');
+
+      // Restrict NISN to numeric input only during typing
+      nisnInput.addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+      });
+
+      // Restrict WhatsApp to numeric input only during typing
+      waInput.addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+      });
+
+      // Real-time error removal on field input change
+      [namaInput, kelasSelect, nisnInput, waInput, divisiSelect, alasanItcText, alasanDivisiText].forEach(field => {
+        field.addEventListener('input', function () {
+          const group = this.closest('.form-group');
+          if (group) group.classList.remove('has-error');
+        });
+      });
+
+      // Form Submit Handler
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        let isValid = true;
+
+        // 1. Validasi Nama
+        if (!namaInput.value.trim() || namaInput.value.trim().length < 3) {
+          setError('group-nama');
+          isValid = false;
+        }
+
+        // 2. Validasi Kelas
+        if (!kelasSelect.value) {
+          setError('group-kelas');
+          isValid = false;
+        }
+
+        // 3. Validasi NISN (harus 10 digit angka)
+        const nisnVal = nisnInput.value.trim();
+        if (!nisnVal || !/^\d{10}$/.test(nisnVal)) {
+          setError('group-nisn');
+          isValid = false;
+        }
+
+        // 4. Validasi Nomor WhatsApp (angka, min 10 digit)
+        const waVal = waInput.value.trim();
+        if (!waVal || !/^\d{10,15}$/.test(waVal)) {
+          setError('group-whatsapp');
+          isValid = false;
+        }
+
+        // 5. Validasi Divisi Pilihan
+        if (!divisiSelect.value) {
+          setError('group-divisi');
+          isValid = false;
+        }
+
+        // 6. Validasi Alasan Masuk IT Club
+        if (!alasanItcText.value.trim() || alasanItcText.value.trim().length < 10) {
+          setError('group-alasan-itc');
+          isValid = false;
+        }
+
+        // 7. Validasi Alasan Memilih Divisi
+        if (!alasanDivisiText.value.trim() || alasanDivisiText.value.trim().length < 10) {
+          setError('group-alasan-divisi');
+          isValid = false;
+        }
+
+        // Jika semua validasi lolos
+        if (isValid) {
+          const submitBtn = form.querySelector('.btn-submit');
+          const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+
+          // Ubah tombol ke state loading
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>MENYIMPAN DATA...</span> <span style="font-family: var(--font-mono);">[ ... ]</span>';
+          }
+
+          // Generate Kode Pendaftaran Swiss (ITC-2026-XXXX)
+          const randomCode = 'ITC-2026-' + Math.floor(1000 + Math.random() * 9000);
+
+          const registrationData = {
+            kode: randomCode,
+            nama: namaInput.value.trim(),
+            kelas: kelasSelect.value,
+            nisn: nisnInput.value.trim(),
+            whatsapp: waInput.value.trim(),
+            divisi: divisiSelect.value,
+            alasanItc: alasanItcText.value.trim(),
+            alasanDivisi: alasanDivisiText.value.trim(),
+            submittedAt: new Date().toISOString()
+          };
+
+          // Google Apps Script Endpoint URL
+          const scriptURL = 'https://script.google.com/macros/s/AKfycbxV5HWg0jRlXnjyJkaaaXQVIlct2nEMu5_sOQqjcFm9ZR9jlQz4ZVpBn7baYRz9d-uu/exec';
+
+          // Konversi data ke URLSearchParams dengan berbagai variasi nama header (bebas kapitalisasi & spasi)
+          const formData = new URLSearchParams();
+          
+          // Timestamp / Waktu
+          const nowStr = new Date().toLocaleString('id-ID');
+          formData.append('timestamp', nowStr);
+          formData.append('Timestamp', nowStr);
+          formData.append('waktu', nowStr);
+          formData.append('Waktu', nowStr);
+
+          // Kode Registrasi
+          formData.append('kode', registrationData.kode);
+          formData.append('Kode', registrationData.kode);
+          formData.append('Kode Registrasi', registrationData.kode);
+
+          // Nama
+          formData.append('nama', registrationData.nama);
+          formData.append('Nama', registrationData.nama);
+          formData.append('Nama Lengkap', registrationData.nama);
+
+          // Kelas
+          formData.append('kelas', registrationData.kelas);
+          formData.append('Kelas', registrationData.kelas);
+
+          // NISN
+          formData.append('nisn', registrationData.nisn);
+          formData.append('NISN', registrationData.nisn);
+
+          // WhatsApp (kirim nilai asli + format teks dengan petik tunggal agar angka 0 di depan tidak terhapus Google Sheets)
+          const waVal = registrationData.whatsapp;
+          const waText = "'" + waVal; // Format teks paksa untuk Google Sheets
+          
+          formData.append('whatsapp', waVal);
+          formData.append('WhatsApp', waVal);
+          formData.append('No WhatsApp', waVal);
+          formData.append('No. WhatsApp', waVal);
+          formData.append('Nomor WhatsApp', waVal);
+          formData.append('no_whatsapp', waVal);
+          formData.append('nomor_whatsapp', waVal);
+          formData.append('WA', waVal);
+          formData.append('No WA', waVal);
+          formData.append('No. WA', waVal);
+          formData.append('No HP', waVal);
+          formData.append('No. HP', waVal);
+          formData.append('Nomor HP', waVal);
+          formData.append('Kontak', waVal);
+          formData.append('No Telp', waVal);
+          formData.append('No. Telp', waVal);
+          formData.append('No Telepon', waVal);
+          formData.append('Telepon', waVal);
+          formData.append('Handphone', waVal);
+          formData.append('Phone', waVal);
+          formData.append('Mobile', waVal);
+
+          // Tambahkan juga versi bertanda petik
+          formData.append('whatsapp_text', waText);
+          formData.append('No WhatsApp Text', waText);
+
+          // Divisi
+          formData.append('divisi', registrationData.divisi);
+          formData.append('Divisi', registrationData.divisi);
+          formData.append('Divisi Pilihan', registrationData.divisi);
+          formData.append('divisi_pilihan', registrationData.divisi);
+          formData.append('Divisi yang Dipilih', registrationData.divisi);
+
+          // Alasan Masuk IT Club
+          formData.append('alasan_itc', registrationData.alasanItc);
+          formData.append('alasanItc', registrationData.alasanItc);
+          formData.append('Alasan Gabung', registrationData.alasanItc);
+          formData.append('Alasan Masuk', registrationData.alasanItc);
+          formData.append('Alasan Masuk IT Club', registrationData.alasanItc);
+          formData.append('Alasan Ingin Bergabung ke IT Club', registrationData.alasanItc);
+          formData.append('Alasan ITC', registrationData.alasanItc);
+
+          // Alasan Memilih Divisi
+          formData.append('alasan_divisi', registrationData.alasanDivisi);
+          formData.append('alasanDivisi', registrationData.alasanDivisi);
+          formData.append('Alasan Divisi', registrationData.alasanDivisi);
+          formData.append('Alasan Memilih Divisi', registrationData.alasanDivisi);
+          formData.append('Alasan Memilih Divisi Tersebut', registrationData.alasanDivisi);
+
+          // Kirim ke Google Spreadsheet via fetch API (menggunakan mode: 'no-cors' agar tidak diblokir CORS browser)
+          fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+          })
+            .then(() => {
+              console.log('Google Sheets Sync Triggered');
+            })
+            .catch(error => {
+              console.warn('Google Sheets Sync Warning/Error:', error);
+            })
+            .finally(() => {
+              // Simpan ke localStorage
+              saveToLocalStorage(registrationData);
+
+              // Update Modal View
+              resKode.textContent = registrationData.kode;
+              resNama.textContent = registrationData.nama;
+              resKelasNisn.textContent = registrationData.kelas + ' / NISN: ' + registrationData.nisn;
+              resDivisi.textContent = registrationData.divisi;
+
+              // Tampilkan Modal Pendaftaran Berhasil
+              successModal.classList.add('active');
+
+              // Reset Form & kembalikan tombol
+              form.reset();
+              if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+              }
+            });
+
+        } else {
+          // Scroll ke field pertama yang error
+          const firstError = document.querySelector('.form-group.has-error');
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      });
+
+      function setError(groupId) {
+        const group = document.getElementById(groupId);
+        if (group) {
+          group.classList.add('has-error');
+        }
+      }
+
+      function saveToLocalStorage(data) {
+        try {
+          const existing = JSON.parse(localStorage.getItem('itc_operec_registrations') || '[]');
+          existing.push(data);
+          localStorage.setItem('itc_operec_registrations', JSON.stringify(existing));
+        } catch (e) {
+          console.warn('LocalStorage error:', e);
+        }
+      }
+    });
+
+    // Close Modal Function
+    function closeModal() {
+      const modal = document.getElementById('successModal');
+      if (modal) {
+        modal.classList.remove('active');
+      }
+    }
+  </script>
 </body>
+
 </html>
