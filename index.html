@@ -1,731 +1,1143 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+  Free website template by 8B: https://8b.com/templates/evenkeel/
+  Source: https://github.com/8bsite/accounting-firm-website-template
+  MIT License (code) https://8b.com/ · Photos: Unsplash License, see CREDITS.md · Fonts: Google Fonts (OFL)
+  One HTML file, no build step. Notes for people and AI agents: README.md and AGENTS.md.
+-->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rustaman Delvianova : Systems, Collectives & Open Source</title>
-  <meta name="description" content="Founder of crustdev. Systems engineer, open-source contributor, and builder of spatial virtual worlds, procedural engines, and developer tools.">
-  <meta property="og:title" content="Rustaman Delvianova : Systems, Collectives & Open Source">
-  <meta property="og:description" content="Founder of crustdev. Building independent creative studios, procedural voxel engines, and open-source developer tooling.">
-  <meta property="og:url" content="https://rus.my.id">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" type="image/png" href="image/crustdev-logo.png">
-  <style>
-    :root {
-      --bg: #090a0f;
-      --bg-surface: #11131a;
-      --bg-elevated: #161923;
-      --border: #222634;
-      --border-hover: #333a4e;
-      --text-main: #f0f3fa;
-      --text-muted: #8e95a5;
-      --text-dim: #5c6476;
-      --mint: #00f5a0;
-      --violet: #8a2be2;
-      --cerulean: #0088ff;
-      --amber: #ffb703;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-      --max-width: 860px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      padding: 3rem 1.5rem 6rem;
-    }
-
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    header {
-      margin-bottom: 3.5rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2rem;
-    }
-
-    .status-bar {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(0, 245, 160, 0.08);
-      border: 1px solid rgba(0, 245, 160, 0.25);
-      border-radius: 9999px;
-      padding: 0.25rem 0.75rem;
-      font-size: 0.78rem;
-      color: var(--mint);
-      font-family: var(--font-mono);
-      margin-bottom: 1.5rem;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      background: var(--mint);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--mint);
-    }
-
-    .identity {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .title-group h1 {
-      font-size: 2.25rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      line-height: 1.2;
-    }
-
-    .title-group p.sub {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      margin-top: 0.35rem;
-    }
-
-    .avatar-wrap {
-      width: 68px;
-      height: 68px;
-      border-radius: 16px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .avatar-wrap img {
-      width: 54px;
-      height: 54px;
-      object-fit: contain;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.25rem;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      transition: color 0.15s ease;
-    }
-
-    .nav-links a:hover {
-      color: #ffffff;
-    }
-
-    section {
-      margin-bottom: 3.5rem;
-    }
-
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .bio-lead {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: var(--text-main);
-      margin-bottom: 1.25rem;
-    }
-
-    .bio-text {
-      color: var(--text-muted);
-      font-size: 0.98rem;
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-
-    .crustdev-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem;
-      margin-top: 1.5rem;
-      transition: border-color 0.2s ease;
-    }
-
-    .crustdev-card:hover {
-      border-color: var(--border-hover);
-    }
-
-    .crustdev-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .crustdev-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #ffffff;
-    }
-
-    .badge-collective {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
-      background: rgba(138, 43, 226, 0.15);
-      border: 1px solid rgba(138, 43, 226, 0.35);
-      color: #c792ea;
-      border-radius: 6px;
-    }
-
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-
-    .pillar-item {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem;
-    }
-
-    .pillar-name {
-      font-weight: 600;
-      font-size: 0.92rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .pillar-name.studio { color: var(--mint); }
-    .pillar-name.labs { color: var(--cerulean); }
-    .pillar-name.records { color: #d084f7; }
-
-    .pillar-desc {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-    }
-
-    .card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-
-    .card-top {
-      margin-bottom: 0.75rem;
-    }
-
-    .card-title {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .card-title svg {
-      opacity: 0.5;
-      transition: opacity 0.15s ease;
-    }
-
-    .card:hover .card-title svg {
-      opacity: 1;
-    }
-
-    .card-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-top: 0.4rem;
-    }
-
-    .card-tags {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-    .tag {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      background: var(--bg-elevated);
-      color: var(--text-dim);
-      border: 1px solid var(--border);
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-    }
-
-    .oss-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .oss-row {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.15s ease;
-    }
-
-    .oss-row:hover {
-      border-color: var(--border-hover);
-    }
-
-    .oss-info {
-      flex: 1;
-    }
-
-    .oss-name {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .oss-desc {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-top: 0.2rem;
-    }
-
-    .oss-stat {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--mint);
-      background: rgba(0, 245, 160, 0.08);
-      border: 1px solid rgba(0, 245, 160, 0.2);
-      padding: 0.2rem 0.55rem;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-
-    .contact-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .contact-info h3 {
-      font-size: 1.15rem;
-      color: #ffffff;
-      margin-bottom: 0.35rem;
-    }
-
-    .contact-info p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .contact-action {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #ffffff;
-      color: #090a0f;
-      font-weight: 600;
-      font-size: 0.88rem;
-      padding: 0.6rem 1.1rem;
-      border-radius: 6px;
-      text-decoration: none;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: opacity 0.15s ease;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    .btn-secondary {
-      background: var(--bg-elevated);
-      color: var(--text-main);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-surface);
-      border-color: var(--border-hover);
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding-top: 2rem;
-      margin-top: 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.82rem;
-      color: var(--text-dim);
-      font-family: var(--font-mono);
-    }
-
-    footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: #ffffff;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 2rem 1rem 4rem;
-      }
-      .title-group h1 {
-        font-size: 1.75rem;
-      }
-      .contact-box {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .contact-action {
-        width: 100%;
-        flex-direction: column;
-      }
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rustaman Delvianova : Systems, Voxel Engines &amp; Open Source</title>
+<meta name="description" content="Founder of crustdev. Systems engineer, open-source contributor, and builder of spatial virtual worlds, procedural voxel engines, and developer tools.">
+<meta name="generator" content="8B Templates">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rustaman Delvianova : Systems, Voxel Engines &amp; Open Source">
+<meta property="og:description" content="Founder of crustdev. Building independent creative studios, procedural voxel engines, and open-source developer tooling.">
+<meta property="og:image" content="https://rus.my.id/image/crustdev-logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="image/crustdev-logo.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* latin-ext */
+@font-face {
+  font-family: 'Host Grotesk';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZqljm0U0.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Host Grotesk';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/hostgrotesk/v5/co3BmWBnlCJ3U42vbbfdwMjZpFjm.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style data-8b-part="layers">@layer tokens, base, atoms, layout, sections, scenes;</style>
+<style data-8b-part="tokens">
+@layer tokens {
+:root {
+  --color-1: #ffffff;
+  --color-2: #0b0b0b;
+  --color-3: #f2f2f2;
+  --color-4: #6b6b6b;
+  --color-5: #8f8f8f;
+  --color-6: #d12a1e;
+  --color-8: #dadada;
+  --font-1: "Host Grotesk", "Host Grotesk Fallback", Arial, sans-serif;
+  --radius-1: 999px;
+  --shadow-1: 0 0 0 1.5px var(--color-1);
+  --shadow-2: inset 0 0 0 1px var(--color-2);
+  --shadow-3: inset 0 0 0 1px var(--color-8);
+  --space-1: clamp(16px, 2.4vw, 32px);
+  --space-2: max(var(--space-1), 31vw - 110px);
+  --space-3: max(112px, 40vw - 40px);
+  --space-4: clamp(10px, 1.1vw, 16px);
+}
+}
+</style>
+<style data-8b-part="base">
+@layer base {
+/* fallback faces */
+@font-face { font-family: "Host Grotesk Fallback"; src: local("Arial"), local("ArialMT"), local("Helvetica"); font-weight: 100 549; size-adjust: 101.7%; ascent-override: 100.3%; descent-override: 31.5%; line-gap-override: 0%; }
+@font-face { font-family: "Host Grotesk Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold"); font-weight: 550 799; size-adjust: 96.5%; ascent-override: 105.7%; descent-override: 33.2%; line-gap-override: 0%; }
+/* end fallback faces */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+body { margin: 0; background: var(--color-1); color: var(--color-2); font-family: var(--font-1); font-size: 15px; font-weight: 400; line-height: 1.45; letter-spacing: -0.005em; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input, textarea, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--color-6); outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+main { position: relative; z-index: 1; display: block; }
+}
+</style>
+<style data-8b-part="system">
+@layer atoms {
+.m-text { font-family: var(--font-1); font-size: 15px; font-weight: 400; line-height: 1.45; letter-spacing: -0.005em; text-transform: none; font-style: normal; }
+.m-text-2 { font-family: var(--font-1); font-size: clamp(34px, 6.25vw, 112px); font-weight: 500; line-height: 0.88; letter-spacing: -0.05em; text-transform: none; font-style: normal; }
+.m-text-3 { font-family: var(--font-1); font-size: 12px; font-weight: 600; line-height: 1.25; letter-spacing: 0; text-transform: none; font-style: normal; }
+.m-text-4 { font-family: var(--font-1); font-size: clamp(19px, 1.75vw, 28px); font-weight: 500; line-height: 1.12; letter-spacing: -0.025em; text-transform: none; font-style: normal; }
+.m-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border: 0; border-radius: var(--radius-1); background: var(--color-2); color: var(--color-1); font-family: var(--font-1); font-size: 15px; font-weight: 600; line-height: 1; letter-spacing: -0.01em; text-decoration: none; overflow: hidden; isolation: isolate; cursor: pointer; }
+.m-btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--color-6); transform: scaleX(0); transform-origin: 37% 50%; transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1); }
+.m-btn__label { position: relative; }
+@media (hover: hover) { .m-btn:hover::before { transform: scaleX(1); } }
+.m-btn-3 { position: relative; display: inline-flex; align-items: center; justify-content: center; min-height: 34px; padding: 0 16px; border: 0; border-radius: var(--radius-1); background: var(--color-2); color: var(--color-1); box-shadow: var(--shadow-1); font-family: var(--font-1); font-size: 13px; font-weight: 600; line-height: 1; letter-spacing: 0; overflow: hidden; isolation: isolate; cursor: pointer; }
+.m-btn-3::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--color-6); transform: scaleX(0); transform-origin: 37% 50%; transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1); }
+.m-btn-3__label { position: relative; }
+@media (hover: hover) { .m-btn-3:hover::before { transform: scaleX(1); } }
+.m-link { color: var(--color-2); font-weight: 600; text-decoration: none; background-image: linear-gradient(var(--color-2), var(--color-2)), linear-gradient(var(--color-3), var(--color-3)); background-repeat: no-repeat; background-position: 0 100%, 0 100%; background-size: 100% 1px, 100% 0%; padding: 0 1px 1px; transition: background-size 0.45s cubic-bezier(0.7, 0, 0.2, 1); }
+@media (hover: hover) { .m-link:hover { background-size: 100% 1px, 100% 100%; } }
+.m-link-2 { color: var(--color-1); font-weight: 600; text-decoration: none; background-image: linear-gradient(var(--color-1), var(--color-1)), linear-gradient(var(--color-6), var(--color-6)); background-repeat: no-repeat; background-position: 0 100%, 0 100%; background-size: 100% 1px, 100% 0%; padding: 0 1px 1px; transition: background-size 0.45s cubic-bezier(0.7, 0, 0.2, 1); }
+@media (hover: hover) { .m-link-2:hover { background-size: 100% 1px, 100% 100%; } }
+.m-link-3 { color: var(--color-2); font-family: var(--font-1); font-size: clamp(34px, 5vw, 76px); font-weight: 500; line-height: 0.95; letter-spacing: -0.05em; text-transform: none; font-style: normal; text-decoration: none; background-image: linear-gradient(var(--color-2), var(--color-2)), linear-gradient(var(--color-3), var(--color-3)); background-repeat: no-repeat; background-position: 0 100%, 0 100%; background-size: 100% 2px, 100% 0%; transition: background-size 0.45s cubic-bezier(0.7, 0, 0.2, 1); }
+@media (hover: hover) { .m-link-3:hover { background-size: 100% 2px, 100% 100%; } }
+.m-icon { position: relative; display: inline-grid; place-items: center; width: 48px; height: 48px; border: 1px solid var(--color-2); border-radius: var(--radius-1); background: var(--color-1); color: var(--color-2); overflow: hidden; isolation: isolate; cursor: pointer; padding: 0; }
+.m-icon::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--color-2); transform: scaleX(0); transition: transform 0.45s cubic-bezier(0.7, 0, 0.2, 1); }
+.m-icon__glyph { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; transition: color 0.3s; }
+@media (hover: hover) { .m-icon:hover::before { transform: scaleX(1); } .m-icon:hover { color: var(--color-1); } }
+.m-surface { background: var(--color-3); color: var(--color-2); }
+.m-surface-2 { background: var(--color-1); color: var(--color-2); box-shadow: var(--shadow-2); }
+.m-surface-3 { background: var(--color-2); color: var(--color-1); }
+.m-photo { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.04); background: var(--color-3); }
+.m-field { display: grid; gap: 6px; }
+.m-field__label { font-family: var(--font-1); font-size: 12px; font-weight: 600; line-height: 1.25; letter-spacing: 0; }
+.m-field__input { width: 100%; padding: 8px 0 9px; border: 0; border-bottom: 1px solid var(--color-2); border-radius: 0; background: transparent; color: var(--color-2); font-family: var(--font-1); font-size: 17px; font-weight: 400; line-height: 1.3; resize: vertical; }
+.m-field__input:focus-visible { outline: 2px solid var(--color-6); outline-offset: 2px; }
+}
+</style>
+<style data-8b-part="layout">
+@layer layout {
+.l-a, .l-b { display: block; }
+.l-a { margin-left: var(--space-2); }
+.l-b { margin-left: calc(var(--space-3) + var(--space-4)); }
+.l-left { display: inline-block; width: calc(var(--space-3) - var(--space-4)); margin-right: calc(var(--space-4) * 2); text-align: right; }
+.l-rule { position: absolute; top: 0; bottom: 0; left: var(--space-3); width: 1px; background: var(--color-2); }
+.l-ledger { display: grid; grid-template-columns: var(--space-2) calc(var(--space-3) - var(--space-2)) minmax(0, 1fr) minmax(120px, 15vw); padding-right: var(--space-1); }
+.l-ledger > :first-child { padding-left: var(--space-1); }
+}
+</style>
+<style data-8b-part="section:nav">
+@layer sections {
+#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 40; height: 64px; pointer-events: none; transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1); }
+#nav.is-hidden { transform: translateY(-110%); }
+#nav .nav__logo { position: absolute; top: 14px; left: var(--space-2); display: block; width: 38px; height: 38px; pointer-events: auto; }
+#nav .nav__mark { position: absolute; inset: 0; border-radius: 50%; background: var(--color-2); box-shadow: var(--shadow-1); }
+#nav .nav__mark::before { content: ""; position: absolute; left: 22%; right: 22%; top: calc(50% - 1.5px); height: 3px; background: var(--color-1); }
+#nav .nav__mark::after { content: ""; position: absolute; left: calc(50% - 3.5px); top: calc(50% - 3.5px); width: 7px; height: 7px; border-radius: 50%; background: var(--color-6); }
+#nav .nav__menu { position: absolute; top: 16px; right: var(--space-1); pointer-events: auto; }
+#nav .menu { position: fixed; inset: 0; z-index: 60; display: grid; grid-template-rows: auto 1fr auto; background: var(--color-1); pointer-events: auto; overflow-y: auto; padding: 18px var(--space-1) 24px 0; }
+#nav .menu[hidden] { display: none; }
+#nav .menu__rule { position: absolute; top: 0; bottom: 0; left: var(--space-3); width: 1px; background: var(--color-2); }
+#nav .menu__top { display: flex; justify-content: flex-end; }
+#nav .menu__list { align-self: center; display: grid; gap: clamp(6px, 1.4vh, 14px); padding: 32px 0; }
+#nav .menu__list li:nth-child(odd) { margin-left: var(--space-2); }
+#nav .menu__list li:nth-child(even) { margin-left: calc(var(--space-3) + var(--space-4)); }
+#nav .menu__list li:nth-child(odd) .m-link-3 { background-color: var(--color-1); }
+#nav .menu__foot { margin-left: calc(var(--space-3) + var(--space-4)); display: grid; gap: 4px; }
+}
+</style>
+<style data-8b-part="section:opening">
+@layer sections {
+#opening { position: relative; overflow-x: clip; }
+#opening .op-one { position: relative; min-height: 100svh; display: flex; flex-direction: column; padding: 20px var(--space-1) calc(clamp(44px, 6.25vw, 112px) * 0.9 + 34px) 0; }
+#opening .op-rule { transform-origin: 50% 0; }
+#opening .op-where { display: grid; gap: 2px; margin-top: 2px; }
+#opening .op-head { margin-top: auto; padding-top: 40px; }
+#opening .op-name { display: grid; grid-template-columns: var(--space-3) minmax(0, 1fr); align-items: end; }
+#opening .op-what { padding: 0 var(--space-4) 4px var(--space-2); }
+#opening .op-h1 { padding-left: var(--space-4); }
+#opening .ln { display: block; }
+#opening .ln__i { display: inline-block; position: relative; }
+#opening .op-sub { margin-top: 0.12em; }
+#opening .op-a .ln__i { background: var(--color-1); padding-right: 0.08em; }
+#opening .op-in { padding-left: 1.6em; }
+#opening .op-foot { display: grid; grid-template-columns: var(--space-3) minmax(0, 1fr); align-items: center; margin-top: clamp(22px, 4vh, 40px); }
+#opening .op-actions { margin-left: var(--space-4); display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
+#opening .op-level { position: relative; margin: 0 var(--space-4) 0 var(--space-2); height: 26px; border: 1px solid var(--color-2); border-radius: var(--radius-1); --op-travel: max(18px, calc((var(--space-3) - var(--space-2) - var(--space-4)) / 2 - 22px)); }
+#opening .op-level::before, #opening .op-level::after { content: ""; position: absolute; top: 4px; bottom: 4px; width: 1px; background: var(--color-2); }
+#opening .op-level::before { left: calc(50% - 14px); }
+#opening .op-level::after { left: calc(50% + 14px); }
+#opening .op-level__bubble { position: absolute; top: 5px; left: calc(50% - 8px); width: 16px; height: 14px; border-radius: 50%; background: var(--color-6); }
+#opening .op-two { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: space-between; gap: clamp(28px, 6vh, 64px); padding: clamp(72px, 13vh, 132px) var(--space-1) clamp(48px, 9vh, 96px) 0; color: var(--color-1); background: var(--color-2); clip-path: inset(0 0 0 0); --op-tile: clamp(112px, 13vw, 220px); }
+#opening .op-two > * { position: relative; }
+#opening .op-tiles { height: var(--op-tile); }
+#opening .op-tile { position: absolute; top: 0; width: var(--op-tile); height: var(--op-tile); overflow: hidden; }
+#opening .op-tile:nth-child(1) { left: var(--space-1); }
+#opening .op-tile:nth-child(2) { left: calc(var(--space-3) + var(--space-4)); }
+#opening .op-tile:nth-child(3) { left: calc(var(--space-3) + var(--space-4) + var(--op-tile) + 10px); }
+#opening .op-tile:nth-child(4) { right: 0; }
+#opening .op-para { max-width: 40ch; margin-right: var(--space-1); }
+#opening .op-para .m-link-2 { margin-left: 0.2em; }
+#opening .op-say { white-space: nowrap; }
+@media (max-width: 700px) {
+  #opening .op-foot { grid-template-columns: var(--space-3) minmax(0, 1fr); align-items: start; }
+  #opening .op-level { margin-top: 11px; }
+  #opening .op-actions { flex-direction: column; align-items: flex-start; }
+  #opening .op-tiles { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-left: var(--space-1); }
+  #opening .op-tile { position: relative; left: auto; right: auto; width: auto; height: auto; aspect-ratio: 1; }
+  #opening .op-tile:nth-child(n) { left: auto; right: auto; }
+  #opening .op-para { margin-left: var(--space-1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #opening .op-rule { animation: op-draw 1s cubic-bezier(0.7, 0, 0.2, 1) backwards; }
+  #opening .op-one .ln { animation: op-from-rule-r 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  #opening .op-one .op-a { animation-name: op-from-rule-l; }
+  #opening .op-h1 .ln:nth-child(2) { animation-delay: 0.06s; }
+  #opening .op-sub .ln:nth-child(1) { animation-delay: 0.12s; }
+  #opening .op-sub .ln:nth-child(2) { animation-delay: 0.18s; }
+  #opening .op-sub .ln:nth-child(3) { animation-delay: 0.24s; }
+  #opening .op-sub .ln:nth-child(4) { animation-delay: 0.3s; }
+  #opening .op-foot { animation: op-rise 0.8s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  #opening .op-level__bubble { animation: op-level 5.4s ease-in-out infinite; }
+  #opening .op-level.is-paused .op-level__bubble { animation-play-state: paused; }
+}
+@keyframes op-draw { from { transform: scaleY(0); } }
+@keyframes op-from-rule-r { from { transform: translateX(-44px); } }
+@keyframes op-from-rule-l { from { transform: translateX(44px); } }
+@keyframes op-rise { from { transform: translateY(14px); } }
+@keyframes op-level {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(calc(var(--op-travel) * -1)); }
+  45% { transform: translateX(calc(var(--op-travel) * 0.75)); }
+  65% { transform: translateX(calc(var(--op-travel) * -0.35)); }
+  82% { transform: translateX(calc(var(--op-travel) * 0.12)); }
+}
+}
+</style>
+<style data-8b-part="section:services">
+@layer sections {
+#services { position: relative; overflow-x: clip; padding: clamp(110px, 18vh, 200px) 0 clamp(90px, 14vh, 160px); }
+#services .sv-h { margin-bottom: clamp(48px, 9vh, 96px); }
+#services .sv-in { padding-left: 1.4em; }
+#services .sv-ledger { position: relative; }
+#services .sv-rule { transform-origin: 50% 0; }
+#services .sv-head { color: var(--color-4); padding-bottom: 14px; }
+#services .sv-head span:nth-child(2) { text-align: right; padding-right: var(--space-4); }
+#services .sv-head span:nth-child(3) { padding-left: var(--space-4); }
+#services .sv-head span:nth-child(4) { text-align: right; }
+#services .sv-row { position: relative; padding-top: 22px; padding-bottom: 30px; }
+#services .sv-line { position: absolute; top: 0; left: var(--space-1); right: var(--space-1); height: 1px; background: var(--color-8); transform-origin: 0 50%; }
+#services .sv-name { padding-right: 18px; }
+#services .sv-send { text-align: right; padding-right: var(--space-4); }
+#services .sv-return { padding-left: var(--space-4); padding-right: 24px; max-width: 46ch; }
+#services .sv-often { text-align: right; padding-top: 4px; }
+@media (max-width: 700px) {
+  #services .sv-rule { left: 50%; }
+  #services .l-ledger { grid-template-columns: 1fr 1fr; }
+  #services .sv-head { display: none; }
+  #services .sv-name { grid-column: 1; padding-bottom: 10px; background: var(--color-1); justify-self: start; position: relative; padding-right: 8px; }
+  #services .sv-often { grid-column: 2; grid-row: 1; padding-left: var(--space-4); }
+  #services .sv-send { grid-column: 1; grid-row: 2; }
+  #services .sv-return { grid-column: 2; grid-row: 2; padding-right: 0; }
+}
+}
+</style>
+<style data-8b-part="section:month">
+@layer sections {
+#month { position: relative; height: 320vh; }
+#month .mo-stage { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: clamp(32px, 7vh, 72px); padding: 64px var(--space-1) clamp(56px, 12vh, 120px) 0; }
+#month .mo-board { position: relative; margin-left: var(--space-2); }
+#month .mo-scale { position: relative; height: 34px; border-right: 1px solid var(--color-2); background:
+  linear-gradient(var(--color-2), var(--color-2)) 0 100% / 100% 1px no-repeat,
+  repeating-linear-gradient(to right, var(--color-2) 0 1px, transparent 1px calc(100% / 4)) 0 100% / 100% 30px no-repeat,
+  repeating-linear-gradient(to right, var(--color-2) 0 1px, transparent 1px calc(100% / 28)) 0 100% / 100% 12px no-repeat; }
+#month .mo-fill { position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: var(--color-6); transform-origin: 0 50%; }
+#month .mo-marker { position: absolute; top: -12px; bottom: 0; right: -1px; width: 2px; background: var(--color-6); }
+#month .mo-tasks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+#month .mo-task { padding: 22px clamp(14px, 2vw, 32px) 0 0; display: grid; align-content: start; gap: 8px; transition: color 0.3s; }
+#month .mo-day { color: var(--color-6); transition: color 0.3s; }
+#month .mo-task .m-text { max-width: 30ch; }
+#month .mo-note { margin-top: -8px; }
+@media (max-width: 700px) {
+  #month { height: 300vh; }
+  #month .mo-stage { gap: 26px; padding-bottom: 76px; }
+  #month .mo-board { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 14px; }
+  #month .mo-scale { height: auto; border-right: 0; border-bottom: 1px solid var(--color-2); background:
+    linear-gradient(var(--color-2), var(--color-2)) 0 0 / 1px 100% no-repeat,
+    repeating-linear-gradient(to bottom, var(--color-2) 0 1px, transparent 1px calc(100% / 4)) 0 0 / 22px 100% no-repeat,
+    repeating-linear-gradient(to bottom, var(--color-2) 0 1px, transparent 1px calc(100% / 28)) 0 0 / 9px 100% no-repeat; }
+  #month .mo-fill { top: 0; bottom: 0; left: -1px; right: auto; width: 3px; height: auto; transform-origin: 50% 0; }
+  #month .mo-marker { top: auto; left: -6px; right: 0; bottom: 0; width: auto; height: 2px; }
+  #month .mo-tasks { grid-template-columns: 1fr; grid-auto-rows: 1fr; }
+  #month .mo-task { padding: 0 0 16px; gap: 4px; }
+  #month .mo-task .m-text { font-size: 14px; line-height: 1.38; }
+}
+}
+</style>
+<style data-8b-part="section:clients">
+@layer sections {
+#clients { position: relative; height: 340vh; }
+#clients .cl-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; perspective: 1500px; }
+#clients .cl-title { position: absolute; left: 0; right: 0; top: 50%; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 0 var(--space-1); transform: translateY(-50%); font-size: clamp(34px, 5vw, 88px); white-space: nowrap; pointer-events: none; }
+#clients .cl-half { display: inline-block; }
+#clients .cl-globe { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; --cl-r: clamp(150px, 19vw, 300px); --cl-w: clamp(70px, 9.6vw, 150px); --cl-h: calc(var(--cl-w) * 0.76); }
+#clients .cl-card { position: absolute; left: calc(var(--cl-w) / -2); top: calc(var(--cl-h) / -2); width: var(--cl-w); height: var(--cl-h); transform-style: preserve-3d; transform: rotateY(var(--lon)) rotateX(var(--lat)) translateZ(var(--cl-r)); }
+#clients .cl-face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 8px; }
+#clients .cl-face:has(img) { padding: 0; }
+#clients .cl-card::after { content: ""; position: absolute; inset: 0; background: var(--color-1); box-shadow: var(--shadow-3); transform: rotateY(180deg) translateZ(1px); backface-visibility: hidden; }
+#clients .cl-trade { color: var(--color-4); font-weight: 500; }
+#clients .cl-note { position: absolute; left: calc(var(--space-3) + var(--space-4)); bottom: clamp(64px, 12vh, 120px); }
+@media (max-width: 700px) {
+  #clients { height: 300vh; }
+  #clients .cl-title { top: 0; bottom: 0; transform: none; display: block; padding: 0; }
+  #clients .cl-half { position: absolute; }
+  #clients .cl-half--a { left: var(--space-1); top: 88px; }
+  #clients .cl-half--b { right: var(--space-1); bottom: 118px; }
+  #clients .cl-globe { --cl-r: 118px; --cl-w: 62px; }
+  #clients .cl-face { padding: 5px; }
+  #clients .cl-face .m-text-3 { font-size: 8px; }
+  #clients .cl-note { left: var(--space-1); bottom: 84px; }
+}
+}
+</style>
+<style data-8b-part="section:prices">
+@layer sections {
+#prices { position: relative; overflow-x: clip; padding: clamp(110px, 18vh, 200px) 0 clamp(90px, 14vh, 160px); }
+#prices .pr-h { margin-bottom: clamp(48px, 9vh, 96px); }
+#prices .pr-cols { color: var(--color-4); padding-bottom: 12px; }
+#prices .pr-cols span:nth-child(3) { padding-left: var(--space-4); }
+#prices .pr-cols span:nth-child(4) { text-align: right; }
+#prices .pr-plan { position: relative; padding-top: 20px; padding-bottom: 34px; }
+#prices .pr-rule { position: absolute; top: 0; left: var(--space-1); right: var(--space-1); height: 1px; background: var(--color-2); transform-origin: 0 50%; }
+#prices .pr-for { padding-right: 20px; color: var(--color-4); }
+#prices .pr-items { padding-left: var(--space-4); padding-right: 24px; }
+#prices .pr-items li { padding: 3px 0 4px; border-bottom: 1px solid var(--color-8); }
+#prices .pr-fee { text-align: right; }
+#prices .pr-fee .m-text-3 { display: block; margin-top: 4px; color: var(--color-4); }
+#prices .pr-note { margin-top: 36px; max-width: 52ch; }
+@media (max-width: 700px) {
+  #prices .pr-cols { display: none; }
+  #prices .l-ledger { grid-template-columns: minmax(0, 1fr) auto; row-gap: 10px; padding-left: var(--space-1); }
+  #prices .l-ledger > :first-child { padding-left: 0; }
+  #prices .pr-for { grid-column: 1 / -1; grid-row: 2; }
+  #prices .pr-items { grid-column: 1 / -1; padding: 0; }
+  #prices .pr-fee { grid-column: 2; grid-row: 1; }
+  #prices .pr-note { margin-left: var(--space-1); margin-right: var(--space-1); }
+}
+}
+</style>
+<style data-8b-part="section:switch">
+@layer sections {
+#switch { position: relative; height: 260vh; }
+#switch .sw-stage { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: clamp(36px, 7vh, 72px); padding: 64px var(--space-1) clamp(64px, 13vh, 130px) 0; }
+#switch .sw-body { position: relative; display: grid; grid-template-columns: var(--space-3) minmax(0, 1fr); }
+#switch .sw-rule { top: -24px; bottom: -24px; }
+#switch .sw-old { padding: 0 var(--space-4) 0 var(--space-2); text-align: right; display: grid; gap: 10px; align-content: start; }
+#switch .sw-old .m-text-3 { color: var(--color-4); }
+#switch .sw-tiles { display: flex; gap: 10px; padding-left: var(--space-4); }
+#switch .sw-tile { position: relative; width: clamp(170px, 17vw, 270px); aspect-ratio: 1; display: flex; flex-direction: column; gap: 8px; padding: 16px; transition: background-color 0.35s, color 0.35s; }
+#switch .sw-ring { width: 40px; height: 40px; margin-bottom: auto; transform: rotate(-90deg); }
+#switch .sw-ring circle { fill: none; stroke-width: 2.5; }
+#switch .sw-ring__track { stroke: var(--color-5); }
+#switch .sw-ring__arc { stroke: var(--color-6); stroke-dasharray: 1; stroke-dashoffset: 0; }
+#switch .sw-text { opacity: 1; }
+@media (max-width: 900px) {
+  #switch .sw-body { grid-template-columns: 1fr; gap: 22px; }
+  #switch .sw-rule { display: none; }
+  #switch .sw-old { text-align: left; padding: 0 0 0 var(--space-1); }
+  #switch .sw-tiles { flex-direction: column; padding-left: var(--space-1); gap: 8px; }
+  #switch .sw-tile { width: auto; aspect-ratio: auto; display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 14px; row-gap: 2px; padding: 12px 14px; }
+  #switch .sw-ring { grid-row: 1 / 3; margin: 0; }
+  #switch .sw-text { font-size: 14px; line-height: 1.35; }
+}
+}
+</style>
+<style data-8b-part="section:team">
+@layer sections {
+#team { position: relative; padding: clamp(110px, 18vh, 200px) 0 clamp(90px, 14vh, 160px); }
+#team .tm-h { margin-bottom: clamp(48px, 9vh, 96px); }
+#team .tm-row { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px); margin: 0 var(--space-1) 0 var(--space-2); }
+#team .tm-card { display: grid; align-content: start; gap: 8px; background: var(--color-1); }
+#team .tm-photo { aspect-ratio: 3 / 4; overflow: hidden; margin-bottom: 8px; }
+#team .tm-role { color: var(--color-4); }
+#team .tm-card .m-text { max-width: 32ch; }
+@media (max-width: 700px) {
+  #team .tm-row { grid-template-columns: 1fr 1fr; row-gap: 32px; margin-left: var(--space-1); }
+  #team .tm-photo { aspect-ratio: 4 / 5; }
+  #team .tm-card .m-text { font-size: 14px; line-height: 1.38; }
+}
+}
+</style>
+<style data-8b-part="section:principle">
+@layer sections {
+#principle { position: relative; padding: clamp(110px, 20vh, 220px) var(--space-1) clamp(110px, 20vh, 220px) 0; overflow-x: clip; }
+#principle .pc-cap { margin-bottom: 28px; color: var(--color-4); }
+#principle .pc-q { font-size: clamp(38px, 8.6vw, 156px); line-height: 0.9; }
+#principle .pc-l { white-space: nowrap; }
+#principle .pc-in { padding-left: 1.2em; }
+#principle .pc-dot { display: inline-block; color: var(--color-6); }
+}
+</style>
+<style data-8b-part="section:faq">
+@layer sections {
+#faq { position: relative; padding: clamp(110px, 18vh, 200px) 0 clamp(90px, 14vh, 160px); }
+#faq .fq-h { margin-bottom: clamp(48px, 9vh, 96px); }
+#faq .fq-list { margin: 0 var(--space-1) 0 calc(var(--space-3) + var(--space-4)); }
+#faq .fq-item { position: relative; }
+#faq .fq-line { position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--color-2); transform-origin: 0 50%; }
+#faq .fq-q { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding: 20px 0 22px; cursor: pointer; list-style: none; }
+#faq .fq-q::-webkit-details-marker { display: none; }
+#faq .fq-icon { position: relative; flex: none; width: 18px; height: 18px; margin-top: 4px; }
+#faq .fq-icon::before, #faq .fq-icon::after { content: ""; position: absolute; left: 0; right: 0; top: calc(50% - 1px); height: 2px; background: var(--color-2); transition: transform 0.35s cubic-bezier(0.7, 0, 0.2, 1); }
+#faq .fq-icon::after { transform: rotate(90deg); }
+#faq details[open] .fq-icon::after { transform: rotate(0deg); }
+#faq .fq-a { max-width: 58ch; padding: 0 0 26px; }
+@media (max-width: 700px) {
+  #faq .fq-list { margin-left: var(--space-1); }
+}
+}
+</style>
+<style data-8b-part="section:reviews">
+@layer sections {
+#reviews { position: relative; padding: clamp(110px, 18vh, 200px) 0 clamp(60px, 10vh, 120px); }
+#reviews .rv-h { margin-bottom: clamp(48px, 9vh, 96px); }
+#reviews .rv-stack { position: relative; margin: 0 var(--space-1) 0 var(--space-2); }
+#reviews .rv-sheet { position: sticky; top: calc(12vh + var(--i) * 16px); min-height: min(62vh, 560px); display: flex; flex-direction: column; justify-content: space-between; gap: 32px; padding: clamp(22px, 3vw, 44px); margin-bottom: 18vh; }
+#reviews .rv-sheet:last-child { margin-bottom: 0; }
+#reviews .rv-quote { font-size: clamp(24px, 3.2vw, 50px); line-height: 1.05; letter-spacing: -0.035em; max-width: 22ch; }
+#reviews .rv-who { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+#reviews .rv-who span + span { color: var(--color-4); }
+@media (max-width: 700px) {
+  #reviews .rv-stack { margin-left: var(--space-1); }
+  #reviews .rv-sheet { top: calc(80px + var(--i) * 12px); min-height: 56vh; margin-bottom: 14vh; }
+}
+}
+</style>
+<style data-8b-part="section:contact">
+@layer sections {
+#contact { position: relative; overflow-x: clip; padding: clamp(110px, 18vh, 200px) 0 clamp(90px, 14vh, 160px); }
+#contact .ct-clock { display: flex; justify-content: space-between; align-items: center; padding: 0 var(--space-1); white-space: nowrap; }
+#contact .ct-frame { flex: none; width: clamp(92px, 11vw, 180px); aspect-ratio: 3 / 4; background: var(--color-2); overflow: hidden; }
+#contact .ct-days { margin: 18px 0 clamp(72px, 14vh, 140px); text-align: center; }
+#contact .ct-grid { position: relative; display: grid; grid-template-columns: var(--space-3) minmax(0, 1fr); }
+#contact .ct-rule { top: 0; bottom: 0; }
+#contact .ct-lines { padding: 6px var(--space-4) 0 var(--space-2); display: grid; gap: 20px; align-content: start; }
+#contact .ct-lines dt { color: var(--color-4); margin-bottom: 4px; }
+#contact .ct-lines dd { font-weight: 500; }
+#contact .ct-right { padding: 0 var(--space-1) 0 var(--space-4); }
+#contact .ct-h { margin-bottom: clamp(36px, 6vh, 60px); }
+#contact .ct-form { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 28px; max-width: 760px; }
+#contact .ct-wide { grid-column: 1 / -1; }
+#contact .ct-send { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+#contact .ct-thanks { color: var(--color-2); }
+@media (max-width: 700px) {
+  #contact .ct-clock { font-size: 30px; }
+  #contact .ct-frame { width: 70px; }
+  #contact .ct-grid { grid-template-columns: 1fr; gap: 48px; }
+  #contact .ct-rule { display: none; }
+  #contact .ct-lines { padding: 0 var(--space-1); order: 2; }
+  #contact .ct-right { padding-left: var(--space-1); }
+  #contact .ct-form { grid-template-columns: 1fr; }
+}
+}
+</style>
+<style data-8b-part="section:footer">
+@layer sections {
+#footer { position: relative; padding: clamp(60px, 10vh, 110px) 0 0; }
+#footer .ft-inner { position: relative; z-index: 1; padding: 0 var(--space-1); }
+#footer .ft-top { position: relative; display: grid; grid-template-columns: calc(var(--space-3) - var(--space-1)) minmax(0, 1fr) auto; align-items: start; gap: 24px 0; border-top: 1px solid var(--color-2); padding-top: 22px; }
+#footer .ft-tag { padding-right: var(--space-4); }
+#footer .ft-links { display: flex; flex-wrap: wrap; gap: 10px 22px; padding-left: var(--space-4); }
+#footer .ft-icons { display: flex; gap: 8px; }
+#footer .ft-word { display: flex; margin-top: clamp(48px, 10vh, 110px); font-size: min(34vw, (100vw - 2 * var(--space-1)) / (var(--len) * 0.45)); line-height: 0.8; white-space: nowrap; }
+#footer .ft-a, #footer .ft-b { display: inline-block; }
+#footer .ft-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; padding: 16px 0 20px; }
+#footer .ghost { position: fixed; left: 0; right: 0; bottom: 0; z-index: 0; display: flex; justify-content: space-between; padding: 0 var(--space-1) 14px; color: var(--color-5); font-size: clamp(44px, 6.25vw, 112px); pointer-events: none; overflow: hidden; }
+#footer .ghost span { display: inline-block; line-height: 0.82; }
+@media (max-width: 700px) {
+  #footer .ft-top { grid-template-columns: 1fr auto; }
+  #footer .ft-links { grid-column: 1 / -1; grid-row: 2; padding-left: 0; }
+}
+}
+</style>
+<style data-8b-part="scene-style:month">
+@layer scenes {
+@media (prefers-reduced-motion: no-preference) {
+  #month[data-month] .mo-task:not(.is-on) { color: var(--color-4); }
+  #month[data-month] .mo-task:not(.is-on) .mo-day { color: var(--color-4); }
+}
+}
+</style>
+<style data-8b-part="scene-style:switch">
+@layer scenes {
+@media (prefers-reduced-motion: no-preference) {
+  #switch[data-switch] .sw-tile:not(.is-done) { background: var(--color-3); color: var(--color-2); }
+}
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="status-bar">
-        <span class="status-dot"></span>
-        <span>Independent Collective & Open Source</span>
-      </div>
-      <div class="identity">
-        <div class="title-group">
-          <h1>Rustaman Delvianova</h1>
-          <p class="sub">Founder of crustdev : Systems Engineer & Collective Builder</p>
-        </div>
-        <div class="avatar-wrap">
-          <img src="image/crustdev-logo.png" alt="crustdev symbol">
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a href="https://crusts.dev" target="_blank" rel="noopener">
-          <span>crusts.dev</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </a>
-        <a href="https://github.com/Rustaman1280" target="_blank" rel="noopener">
-          <span>GitHub (Rustaman1280)</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </a>
-        <a href="https://www.npmjs.com/~crustdev" target="_blank" rel="noopener">
-          <span>npm (@crustdev)</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </a>
-        <a href="https://orcid.org/0009-0007-6286-3660" target="_blank" rel="noopener">
-          <span>ORCID</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-        </a>
-        <a href="mailto:rustaman@rus.my.id">
-          <span>rustaman@rus.my.id</span>
-        </a>
-      </nav>
-    </header>
-
-    <main>
-      <section>
-        <div class="section-label">01 / Overview</div>
-        <p class="bio-lead">
-          I build deterministic software systems, spatial voxel engines, and open-source tooling.
-        </p>
-        <p class="bio-text">
-          As the founder of <strong>crustdev</strong>, I lead an independent creative studio and co-ownership collective operating across original interactive titles, developer software, and spatial sound engineering. My focus is on robust software craftsmanship: zero unnecessary abstraction layers, strict type safety, verified test coverage, and transparent peer collaboration.
-        </p>
-      </section>
-
-      <section>
-        <div class="section-label">02 / Venture & Collective</div>
-        <div class="crustdev-card">
-          <div class="crustdev-header">
-            <div>
-              <div class="crustdev-title">crustdev (crusts.dev)</div>
-              <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.2rem;">
-                Independent creative studio and co-ownership collective.
-              </p>
-            </div>
-            <span class="badge-collective">Active Collective</span>
-          </div>
-          <div class="pillars-grid">
-            <div class="pillar-item">
-              <div class="pillar-name studio">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <span>crustdev studio</span>
-              </div>
-              <p class="pillar-desc">
-                Original virtual worlds and spatial Roblox experiences built with dedicated procedural gameplay logic and low-latency netcode.
-              </p>
-            </div>
-            <div class="pillar-item">
-              <div class="pillar-name labs">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                <span>crustdev labs</span>
-              </div>
-              <p class="pillar-desc">
-                Software tools, procedural terrain engines, multi-octave noise packages, and distributed workflow automations.
-              </p>
-            </div>
-            <div class="pillar-item">
-              <div class="pillar-name records">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                <span>crustdev records</span>
-              </div>
-              <p class="pillar-desc">
-                Spatial soundscapes, dynamic reactive in-game stems, and original soundtracks supporting studio productions.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-label">03 / Published Libraries & SDKs</div>
-        <div class="grid-cards">
-          <a class="card" href="https://www.npmjs.com/package/@crustdev/synthetix" target="_blank" rel="noopener">
-            <div class="card-top">
-              <div class="card-title">
-                <span>@crustdev/synthetix</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-              </div>
-              <p class="card-desc">
-                Deterministic procedural terrain generation, multi-octave simplex/Perlin noise, and voxel biome engine SDK for high-performance 3D spatial environments.
-              </p>
-            </div>
-            <div class="card-tags">
-              <span class="tag">npm package</span>
-              <span class="tag">procedural</span>
-              <span class="tag">voxels</span>
-              <span class="tag">v1.0.0</span>
-            </div>
-          </a>
-
-          <a class="card" href="https://www.npmjs.com/package/@crustdev/collab-kit" target="_blank" rel="noopener">
-            <div class="card-top">
-              <div class="card-title">
-                <span>@crustdev/collab-kit</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-              </div>
-              <p class="card-desc">
-                Developer toolkit for engineering collectives and pair programming. Implements RFC 2822 git commit trailer parsing, co-authorship validation, and release changelog credit generation.
-              </p>
-            </div>
-            <div class="card-tags">
-              <span class="tag">typescript</span>
-              <span class="tag">git-trailers</span>
-              <span class="tag">cli</span>
-              <span class="tag">action</span>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-label">04 / Open Source Contributions</div>
-        <div class="oss-list">
-          <a class="oss-row" href="https://github.com/primer/react/pull/8645" target="_blank" rel="noopener">
-            <div class="oss-info">
-              <div class="oss-name">
-                <span>primer/react</span>
-                <span style="font-size: 0.75rem; color: var(--text-dim);">(GitHub Design System)</span>
-              </div>
-              <div class="oss-desc">
-                Prevent unexpected Avatar sizing collapse inside Button leadingVisual slots and responsive grid layouts (#7974). 18/18 CI suites passed.
-              </div>
-            </div>
-            <span class="oss-stat">PR #8645</span>
-          </a>
-
-          <a class="oss-row" href="https://github.com/firecrawl/firecrawl/pull/5501" target="_blank" rel="noopener">
-            <div class="oss-info">
-              <div class="oss-name">
-                <span>firecrawl/firecrawl</span>
-                <span style="font-size: 0.75rem; color: var(--text-dim);">(Web Scraping & LLM ETL)</span>
-              </div>
-              <div class="oss-desc">
-                Forward domain_tools and tool_detail direct kwargs in crawl and start_crawl methods, preventing TypeErrors and aligning SDK parity.
-              </div>
-            </div>
-            <span class="oss-stat">PR #5501</span>
-          </a>
-
-          <a class="oss-row" href="https://github.com/firecrawl/firecrawl/pull/5500" target="_blank" rel="noopener">
-            <div class="oss-info">
-              <div class="oss-name">
-                <span>firecrawl/firecrawl</span>
-                <span style="font-size: 0.75rem; color: var(--text-dim);">(Python SDK Engine)</span>
-              </div>
-              <div class="oss-desc">
-                Fold v1 changeTrackingOptions and jsonOptions into v2 formats with Pydantic model unpacking and typed format deduplication.
-              </div>
-            </div>
-            <span class="oss-stat">PR #5500</span>
-          </a>
-
-          <a class="oss-row" href="https://github.com/firecrawl/firecrawl/pull/4945" target="_blank" rel="noopener">
-            <div class="oss-info">
-              <div class="oss-name">
-                <span>firecrawl/firecrawl</span>
-                <span style="font-size: 0.75rem; color: var(--text-dim);">(Change Tracking Diff)</span>
-              </div>
-              <div class="oss-desc">
-                Fix order sensitivity in change tracking markdown diffs and correct parse-diff prefix assertions. Approved 5/5.
-              </div>
-            </div>
-            <span class="oss-stat">PR #4945</span>
-          </a>
-
-          <a class="oss-row" href="https://github.com/OpenHands/OpenHands/pull/19141" target="_blank" rel="noopener">
-            <div class="oss-info">
-              <div class="oss-name">
-                <span>All-Hands-AI/OpenHands</span>
-                <span style="font-size: 0.75rem; color: var(--text-dim);">(Autonomous AI Software Engineer)</span>
-              </div>
-              <div class="oss-desc">
-                Fix Azure DevOps SSH remote browser URL generation by correctly stripping _git path segment across git-sync interfaces.
-              </div>
-            </div>
-            <span class="oss-stat">PR #19141</span>
-          </a>
-
-          <a class="oss-row" href="https://github.com/NousResearch/hermes-agent/pull/147068" target="_blank" rel="noopener">
-            <div class="oss-info">
-              <div class="oss-name">
-                <span>NousResearch/hermes-agent</span>
-                <span style="font-size: 0.75rem; color: var(--text-dim);">(Agent Runtime)</span>
-              </div>
-              <div class="oss-desc">
-                Handle Copilot ACP stdin broken pipe errors gracefully and introduce configuration toggle to disable unconfigured providers.
-              </div>
-            </div>
-            <span class="oss-stat">PR #147068</span>
-          </a>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-label">05 / Get in Touch</div>
-        <div class="contact-box">
-          <div class="contact-info">
-            <h3>Direct Communication</h3>
-            <p>
-              Inquiries, collective collaboration, or systems consulting:
-            </p>
-            <p style="font-family: var(--font-mono); color: #ffffff; margin-top: 0.5rem; font-size: 0.95rem;">
-              rustaman@rus.my.id
-            </p>
-          </div>
-          <div class="contact-action">
-            <a class="btn" href="mailto:rustaman@rus.my.id">Send Email</a>
-            <button class="btn btn-secondary" onclick="navigator.clipboard.writeText('rustaman@rus.my.id'); alert('Email address copied to clipboard: rustaman@rus.my.id');">Copy Address</button>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div>
-        <span>(c) 2026 Rustaman Delvianova</span>
-        <span style="margin: 0 0.5rem;">:</span>
-        <a href="https://crusts.dev" target="_blank">crusts.dev</a>
-      </div>
-      <div>
-        <span>Hosted via Cloudflare & GitHub Pages</span>
-      </div>
-    </footer>
+<!-- navigation: round logo mark top-left and a Menu button; full-screen menu with section links, address and phone -->
+<header id="nav" class="nav" data-8b-section="navigation">
+  <a class="nav__logo" href="#opening"><span class="nav__mark" aria-hidden="true"></span><span class="sr-only">Rustaman Delvianova, back to the top</span></a>
+  <button class="m-btn-3 nav__menu" type="button" aria-expanded="false" aria-controls="menu"><span class="m-btn-3__label">Menu</span></button>
+  <div class="menu" id="menu" data-lenis-prevent hidden>
+    <span class="menu__rule" aria-hidden="true"></span>
+    <div class="menu__top">
+      <button class="m-icon menu__close" type="button" aria-label="Close menu"><svg class="m-icon__glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    </div>
+    <nav aria-label="Main">
+      <ul class="menu__list">
+        <li><a class="m-link-3" href="#services">Services</a></li>
+        <li><a class="m-link-3" href="#month">A sprint</a></li>
+        <li><a class="m-link-3" href="#clients">Projects</a></li>
+        <li><a class="m-link-3" href="#prices">Modules</a></li>
+        <li><a class="m-link-3" href="#switch">Principles</a></li>
+        <li><a class="m-link-3" href="#team">Collective</a></li>
+        <li><a class="m-link-3" href="#faq">Questions</a></li>
+        <li><a class="m-link-3" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="menu__foot">
+      <p class="m-text-3">Garut, Indonesia : Global Remote</p>
+      <p class="m-text-3"><a class="m-link" href="mailto:rustaman@rus.my.id">rustaman@rus.my.id</a></p>
+    </div>
   </div>
+</header>
+<main>
+<!-- opening: two screens: big type hung on a vertical hairline rule with a booking button, then a black screen with a statement, a paragraph and four photos (animation: scene:opening) -->
+<section id="opening" class="op" data-8b-section="opening">
+  <div class="op-one">
+    <span class="l-rule op-rule" aria-hidden="true"></span>
+    <p class="m-text-3 op-where l-b"><span>Garut / Remote</span><span>Founder of crustdev</span></p>
+    <div class="op-head">
+      <div class="op-name">
+        <p class="m-text-3 op-what">Systems, Voxel Engines &amp; Open Source</p>
+        <h1 class="m-text-2 op-h1"><span class="ln"><span class="ln__i">Rustaman</span></span> <span class="ln"><span class="ln__i">Delvianova</span></span></h1>
+      </div>
+      <p class="m-text-2 op-sub">
+        <span class="ln l-a op-a"><span class="ln__i">Systems built</span></span>
+        <span class="ln l-a op-a"><span class="ln__i">level,</span></span>
+        <span class="ln l-b"><span class="ln__i">code shipped</span></span>
+        <span class="ln l-b op-in"><span class="ln__i">on time.</span></span>
+      </p>
+      <div class="op-foot">
+        <div class="op-level" aria-hidden="true"><span class="op-level__bubble"></span></div>
+        <div class="op-actions">
+          <a class="m-btn" href="#contact"><span class="m-btn__label">Get in touch</span></a>
+          <a class="m-link" href="#services">Explore what we build</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="op-two">
+    <ul class="op-tiles">
+      <li class="op-tile"><img style="background:#260c0c" class="m-photo" src="https://images.unsplash.com/photo-1649209979970-f01d950cc5ed?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8cmVjZWlwdHMlMjBjYWxjdWxhdG9yfGVufDF8MHx8fDE3OTEzNjU3MjN8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=360&amp;q=60" alt="Work desk with tools and calculations" width="1600" height="1254" loading="lazy"></li>
+      <li class="op-tile"><img style="background:#a6a6a6" class="m-photo" src="https://images.unsplash.com/photo-1772588627342-5ec373e236d8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTF8fHJlY2VpcHRzJTIwY2FsY3VsYXRvcnxlbnwxfDB8fHwxNzkxMzY1NzIzfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=60" alt="Technical schematics and code" width="1600" height="1067" loading="lazy"></li>
+      <li class="op-tile"><img style="background:#c0c0c0" class="m-photo" src="https://images.unsplash.com/photo-1710776531873-fa1c10b7a68f?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OXx8cmVjZWlwdHMlMjBjYWxjdWxhdG9yfGVufDF8MHx8fDE3OTEzNjU3MjN8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=60" alt="Engineering precision tools" width="1600" height="1067" loading="lazy"></li>
+      <li class="op-tile"><img style="background:#d9d9d9" class="m-photo" src="https://images.unsplash.com/photo-1632152133952-98b268dc4b86?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTl8fGFjY291bnRhbnQlMjBwYXBlcndvcmslMjBkZXNrfGVufDF8MHx8fDE3OTEzNjU3MjR8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=420&amp;q=60" alt="Printed specifications and hardware" width="1600" height="1067" loading="lazy"></li>
+    </ul>
+    <p class="m-text op-para l-b">I build deterministic software systems, spatial voxel engines, and open-source tooling. As the founder of crustdev, I lead an independent creative studio and co-ownership collective operating across original interactive titles, developer software, and spatial sound engineering. <a class="m-link-2" href="#month">See how our sprints run</a></p>
+    <p class="m-text-2 op-say">
+      <span class="ln"><span class="ln__i l-left">the</span><span class="ln__i">best</span></span>
+      <span class="ln l-a"><span class="ln__i">systems are the</span></span>
+      <span class="ln l-a"><span class="ln__i">boring ones.</span></span>
+    </p>
+  </div>
+</section>
+
+<!-- services: ledger of four services: what the client sends left of the rule, what the firm returns right of it, how often -->
+<section id="services" class="sv" data-8b-section="services">
+  <h2 class="m-text-2 sv-h"><span class="l-a">Four areas</span><span class="l-b">we build</span><span class="l-b sv-in">with craft.</span></h2>
+  <div class="sv-ledger">
+    <span class="l-rule sv-rule" aria-hidden="true" data-8b-motion="rule"></span>
+    <div class="l-ledger sv-head m-text-3" aria-hidden="true"><span>Domain</span><span>You bring</span><span>We deliver</span><span>Cycle</span></div>
+    <ul class="sv-rows">
+      <li class="l-ledger sv-row">
+        <h3 class="m-text-4 sv-name">Voxel &amp; Procedural Engines</h3>
+        <p class="m-text sv-send" data-8b-motion="post"><span class="sr-only">You bring: </span>Biome parameters, noise seeds, and spatial voxel rules.</p>
+        <p class="m-text sv-return" data-8b-motion="post" data-post="right"><span class="sr-only">We deliver: </span>Deterministic procedural generation engines and multi-octave noise packages (@crustdev/synthetix).</p>
+        <p class="m-text-3 sv-often">Production</p>
+        <span class="sv-line" aria-hidden="true" data-8b-motion="rule"></span>
+      </li>
+      <li class="l-ledger sv-row">
+        <h3 class="m-text-4 sv-name">Developer Tools &amp; Git Workflows</h3>
+        <p class="m-text sv-send" data-8b-motion="post"><span class="sr-only">You bring: </span>Commit hooks, branch policies, and PR attribution requirements.</p>
+        <p class="m-text sv-return" data-8b-motion="post" data-post="right"><span class="sr-only">We deliver: </span>RFC 2822 trailer parsers, contributor attribution engines (@crustdev/collab-kit), and GitHub Actions.</p>
+        <p class="m-text-3 sv-often">Open Source</p>
+        <span class="sv-line" aria-hidden="true" data-8b-motion="rule"></span>
+      </li>
+      <li class="l-ledger sv-row">
+        <h3 class="m-text-4 sv-name">Spatial Interactive Worlds</h3>
+        <p class="m-text sv-send" data-8b-motion="post"><span class="sr-only">You bring: </span>Core loops, gameplay mechanics, and level design specifications.</p>
+        <p class="m-text sv-return" data-8b-motion="post" data-post="right"><span class="sr-only">We deliver: </span>Production Roblox experiences via crustdev studio with optimized netcode and custom physics.</p>
+        <p class="m-text-3 sv-often">Studio</p>
+        <span class="sv-line" aria-hidden="true" data-8b-motion="rule"></span>
+      </li>
+      <li class="l-ledger sv-row">
+        <h3 class="m-text-4 sv-name">Infrastructure &amp; Codebase Audits</h3>
+        <p class="m-text sv-send" data-8b-motion="post"><span class="sr-only">You bring: </span>Performance bottlenecks, SDK parity gaps, and upstream bugs.</p>
+        <p class="m-text sv-return" data-8b-motion="post" data-post="right"><span class="sr-only">We deliver: </span>Tested, signed-off pull requests with 100% test pass rates across critical OSS repositories.</p>
+        <p class="m-text-3 sv-often">Continuous</p>
+        <span class="sv-line" aria-hidden="true" data-8b-motion="rule"></span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- month: a month drawn as a ruler: a red marker sweeps across and four dated tasks turn from grey to black (animation: scene:month) -->
+<section id="month" class="mo" data-8b-section="month">
+  <div class="mo-stage">
+    <h2 class="m-text-2 mo-h"><span class="l-a">A sprint</span><span class="l-b">on the codebase</span></h2>
+    <div class="mo-board">
+      <div class="mo-scale" aria-hidden="true"><span class="mo-fill"></span></div><span class="mo-marker" aria-hidden="true"></span>
+      <ol class="mo-tasks">
+        <li class="mo-task"><p class="m-text-3 mo-day">Day 1</p><h3 class="m-text-4">Invariants mapped</h3><p class="m-text">Core data types, architecture boundaries, and test invariants established without premature abstraction.</p></li>
+        <li class="mo-task"><p class="m-text-3 mo-day">Day 8</p><h3 class="m-text-4">Primitives built</h3><p class="m-text">Clean, deterministic logic authored without heavy external runtime dependencies.</p></li>
+        <li class="mo-task"><p class="m-text-3 mo-day">Day 15</p><h3 class="m-text-4">Test suite green</h3><p class="m-text">Unit tests, fuzzing suites, and edge-case contracts pass 100% across all target runtimes.</p></li>
+        <li class="mo-task"><p class="m-text-3 mo-day">Day 22</p><h3 class="m-text-4">Shipped to edge</h3><p class="m-text">Production artifacts published to npm, released on GitHub, and deployed to live infrastructure.</p></li>
+      </ol>
+    </div>
+    <p class="m-text-3 mo-note l-b">Every sprint, zero exceptions.</p>
+  </div>
+</section>
+
+<!-- clients: turning 3D sphere of 28 client cards (names and photos) between the two halves of the title (animation: scene:clients) -->
+<section id="clients" class="cl" data-8b-section="clients">
+  <div class="cl-stage">
+    <h2 class="m-text-2 cl-title"><span class="cl-half cl-half--a">Projects &amp;</span> <span class="cl-half cl-half--b">Collectives</span></h2>
+    <ul class="cl-globe" aria-label="Some of the projects and collectives we build">
+      <li class="cl-card" style="--lat:74.6deg;--lon:0.0deg"><div class="cl-face m-surface"><span class="m-text-3">crustdev studio</span><span class="m-text-3 cl-trade">Roblox Games</span></div></li>
+      <li class="cl-card" style="--lat:63.2deg;--lon:137.5deg"><div class="cl-face"><img style="background:#262626" class="m-photo" src="https://images.unsplash.com/photo-1591538519435-4578c3ba26d6?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8YmFrZXJ5JTIwc3RvcmVmcm9udHxlbnwxfDJ8fHwxNzkxMzY1NzEwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=140&amp;q=60" alt="Interactive game environment" width="1600" height="1491" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:55.2deg;--lon:275.0deg"><div class="cl-face m-surface"><span class="m-text-3">crustdev labs</span><span class="m-text-3 cl-trade">Software Tools</span></div></li>
+      <li class="cl-card" style="--lat:48.6deg;--lon:52.5deg"><div class="cl-face m-surface"><span class="m-text-3">crustdev records</span><span class="m-text-3 cl-trade">Game Soundtracks</span></div></li>
+      <li class="cl-card" style="--lat:42.7deg;--lon:190.0deg"><div class="cl-face"><img style="background:#d9d9d9" class="m-photo" src="https://images.unsplash.com/photo-1593702295094-aea22597af65?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTN8fGJhcmJlciUyMHNob3B8ZW58MXwwfHx8MTc5MTM2NTcyM3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=120&amp;q=60" alt="Code workstation" width="1600" height="1067" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:37.4deg;--lon:327.5deg"><div class="cl-face m-surface"><span class="m-text-3">@crustdev/synthetix</span><span class="m-text-3 cl-trade">Voxel SDK</span></div></li>
+      <li class="cl-card" style="--lat:32.4deg;--lon:105.0deg"><div class="cl-face m-surface"><span class="m-text-3">@crustdev/collab-kit</span><span class="m-text-3 cl-trade">Git Trailers</span></div></li>
+      <li class="cl-card" style="--lat:27.7deg;--lon:242.6deg"><div class="cl-face"><img style="background:#f3f3f3" class="m-photo" src="https://images.unsplash.com/photo-1673201229733-69d19c5c4a87?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8dGFpbG9yJTIwd29ya3Nob3B8ZW58MXwwfHx8MTc5MTM2NTcyM3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=130&amp;q=60" alt="Software engineering craft" width="1600" height="1067" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:23.1deg;--lon:20.1deg"><div class="cl-face m-surface"><span class="m-text-3">primer/react</span><span class="m-text-3 cl-trade">GitHub Design</span></div></li>
+      <li class="cl-card" style="--lat:18.7deg;--lon:157.6deg"><div class="cl-face"><img style="background:#262626" class="m-photo" src="https://images.unsplash.com/photo-1779694540389-2e150caf6590?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8ZmxvcmlzdCUyMHNob3B8ZW58MXwyfHx8MTc5MTM2NTcxMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=110&amp;q=60" alt="Open-source collaboration" width="1600" height="1600" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:14.5deg;--lon:295.1deg"><div class="cl-face m-surface"><span class="m-text-3">firecrawl/firecrawl</span><span class="m-text-3 cl-trade">Web ETL</span></div></li>
+      <li class="cl-card" style="--lat:10.3deg;--lon:72.6deg"><div class="cl-face m-surface"><span class="m-text-3">OpenHands</span><span class="m-text-3 cl-trade">Software AI</span></div></li>
+      <li class="cl-card" style="--lat:6.2deg;--lon:210.1deg"><div class="cl-face"><img style="background:#404040" class="m-photo" src="https://images.unsplash.com/photo-1627881032258-599944eab8a1?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8YmljeWNsZSUyMHJlcGFpciUyMHdvcmtzaG9wfGVufDF8Mnx8fDE3OTEzNjU3MTF8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=110&amp;q=60" alt="Engineering precision" width="1600" height="1734" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:2.0deg;--lon:347.6deg"><div class="cl-face m-surface"><span class="m-text-3">hermes-agent</span><span class="m-text-3 cl-trade">Agent Runtime</span></div></li>
+      <li class="cl-card" style="--lat:-2.0deg;--lon:125.1deg"><div class="cl-face m-surface"><span class="m-text-3">phantom</span><span class="m-text-3 cl-trade">Dual-Layer Lang</span></div></li>
+      <li class="cl-card" style="--lat:-6.2deg;--lon:262.6deg"><div class="cl-face"><img style="background:#734026" class="m-photo" src="https://images.unsplash.com/photo-1760018861921-43af85ea6c4f?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8cG90dGVyeSUyMHN0dWRpb3xlbnwxfDB8fHwxNzkxMzY1NzIzfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=150&amp;q=60" alt="Hardware craftsmanship" width="1600" height="1067" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:-10.3deg;--lon:40.1deg"><div class="cl-face m-surface"><span class="m-text-3">ArmorDesk</span><span class="m-text-3 cl-trade">Agent Control</span></div></li>
+      <li class="cl-card" style="--lat:-14.5deg;--lon:177.6deg"><div class="cl-face m-surface"><span class="m-text-3">cognee</span><span class="m-text-3 cl-trade">Graph Memory</span></div></li>
+      <li class="cl-card" style="--lat:-18.7deg;--lon:315.1deg"><div class="cl-face"><img style="background:#0c260c" class="m-photo" src="https://images.unsplash.com/photo-1633420840567-d5c4cbdffe57?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8Y29mZmVlJTIwc2hvcCUyMGNvdW50ZXJ8ZW58MXwwfHx8MTc5MTM2NTcyM3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=160&amp;q=60" alt="Focused design" width="1600" height="1061" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:-23.1deg;--lon:92.7deg"><div class="cl-face m-surface"><span class="m-text-3">7rew</span><span class="m-text-3 cl-trade">Web Collective</span></div></li>
+      <li class="cl-card" style="--lat:-27.7deg;--lon:230.2deg"><div class="cl-face m-surface"><span class="m-text-3">crusts.dev</span><span class="m-text-3 cl-trade">Mothership</span></div></li>
+      <li class="cl-card" style="--lat:-32.4deg;--lon:7.7deg"><div class="cl-face"><img style="background:#262626" class="m-photo" src="https://images.unsplash.com/photo-1630147351247-8d7b39d7e681?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8Ym9va3Nob3AlMjBpbnRlcmlvcnxlbnwxfDB8fHwxNzkxMzY1NzIzfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=150&amp;q=60" alt="Reference books and manuals" width="1600" height="1200" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:-37.4deg;--lon:145.2deg"><div class="cl-face m-surface"><span class="m-text-3">Cloudflare CLI</span><span class="m-text-3 cl-trade">Edge DNS</span></div></li>
+      <li class="cl-card" style="--lat:-42.7deg;--lon:282.7deg"><div class="cl-face m-surface"><span class="m-text-3">AWS Bedrock</span><span class="m-text-3 cl-trade">Mantle Infra</span></div></li>
+      <li class="cl-card" style="--lat:-48.6deg;--lon:60.2deg"><div class="cl-face"><img style="background:#262626" class="m-photo" src="https://images.unsplash.com/photo-1676018366904-c083ed678e60?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8Y2FyJTIwbWVjaGFuaWMlMjBnYXJhZ2V8ZW58MXwwfHx8MTc5MTM2NTcyM3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=130&amp;q=60" alt="Technical setup" width="1600" height="1067" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:-55.2deg;--lon:197.7deg"><div class="cl-face m-surface"><span class="m-text-3">Antigravity AI</span><span class="m-text-3 cl-trade">Coding CLI</span></div></li>
+      <li class="cl-card" style="--lat:-63.2deg;--lon:335.2deg"><div class="cl-face"><img style="background:#594026" class="m-photo" src="https://images.unsplash.com/photo-1788905761561-d47d8df41edf?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8c21hbGwlMjBzaG9wJTIwb3duZXIlMjBjb3VudGVyfGVufDF8Mnx8fDE3OTEzNjU3MTB8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=160&amp;q=60" alt="Production workspace" width="1600" height="1600" loading="lazy"></div></li>
+      <li class="cl-card" style="--lat:-74.6deg;--lon:112.7deg"><div class="cl-face m-surface"><span class="m-text-3">rus.my.id</span><span class="m-text-3 cl-trade">Personal Home</span></div></li>
+    </ul>
+    <p class="m-text-3 cl-note">Active projects, production libraries, and verified open-source contributions.</p>
+  </div>
+</section>
+
+<!-- prices: fee table: four plans in hairline rows with who each is for, what is included and the monthly fee -->
+<section id="prices" class="pr" data-8b-section="prices">
+  <h2 class="m-text-2 pr-h"><span class="pr-l1"><span class="l-left">Open</span>source &amp;</span><span class="l-a">studio modules.</span></h2>
+  <div class="pr-table">
+    <div class="l-ledger pr-cols m-text-3" aria-hidden="true"><span>Module</span><span>For</span><span>What is in it</span><span>Status</span></div>
+    <ul class="pr-plans">
+      <li class="l-ledger pr-plan">
+        <h3 class="m-text-4 pr-name">@crustdev/synthetix</h3>
+        <p class="m-text pr-for">Game developers &amp; spatial engineers</p>
+        <ul class="pr-items"><li class="m-text">Multi-octave simplex/Perlin noise</li><li class="m-text">3D voxel biome generation</li><li class="m-text">Zero external runtime dependencies</li></ul>
+        <p class="m-text-4 pr-fee" data-8b-motion="post" data-post="right">v1.0.0<span class="m-text-3">npm package</span></p>
+        <span class="pr-rule" aria-hidden="true" data-8b-motion="rule"></span>
+      </li>
+      <li class="l-ledger pr-plan">
+        <h3 class="m-text-4 pr-name">@crustdev/collab-kit</h3>
+        <p class="m-text pr-for">Engineering collectives &amp; pair programming</p>
+        <ul class="pr-items"><li class="m-text">RFC 2822 commit trailer parser</li><li class="m-text">Release credits attribution CLI</li><li class="m-text">Reusable GitHub Action for CI</li></ul>
+        <p class="m-text-4 pr-fee" data-8b-motion="post" data-post="right">v1.0.0<span class="m-text-3">npm &amp; action</span></p>
+        <span class="pr-rule" aria-hidden="true" data-8b-motion="rule"></span>
+      </li>
+      <li class="l-ledger pr-plan">
+        <h3 class="m-text-4 pr-name">crustdev studio</h3>
+        <p class="m-text pr-for">Players &amp; virtual world communities</p>
+        <ul class="pr-items"><li class="m-text">Original spatial Roblox experiences</li><li class="m-text">Dynamic reactive audio stems</li><li class="m-text">Community co-ownership model</li></ul>
+        <p class="m-text-4 pr-fee" data-8b-motion="post" data-post="right">Live<span class="m-text-3">crusts.dev</span></p>
+        <span class="pr-rule" aria-hidden="true" data-8b-motion="rule"></span>
+      </li>
+      <li class="l-ledger pr-plan">
+        <h3 class="m-text-4 pr-name">Systems Consulting</h3>
+        <p class="m-text pr-for">Startups &amp; core protocol teams</p>
+        <ul class="pr-items"><li class="m-text">Architecture review &amp; type safety</li><li class="m-text">Upstream open-source maintenance</li><li class="m-text">High-performance netcode tuning</li></ul>
+        <p class="m-text-4 pr-fee" data-8b-motion="post" data-post="right">Selective<span class="m-text-3">inquire</span></p>
+        <span class="pr-rule" aria-hidden="true" data-8b-motion="rule"></span>
+      </li>
+    </ul>
+    <p class="m-text pr-note l-b">All software published by crustdev is open-source under the MIT license or community-owned.</p>
+  </div>
+</section>
+
+<!-- switch: three steps of moving from another accountant, each tile completing with a closing red ring (animation: scene:switch) -->
+<section id="switch" class="sw" data-8b-section="switch">
+  <div class="sw-stage">
+    <h2 class="m-text-2 sw-h"><span class="l-a">Engineering</span><span class="l-b">principles</span><span class="l-b">we uphold.</span></h2>
+    <div class="sw-body">
+      <span class="l-rule sw-rule" aria-hidden="true"></span>
+      <div class="sw-old">
+        <p class="m-text-3">Craftsmanship First</p>
+        <p class="m-text">Building software that lasts requires strict discipline: simple primitives, deterministic execution, and transparent peer collaboration.</p>
+      </div>
+      <ol class="sw-tiles">
+        <li class="sw-tile m-surface-3"><svg class="sw-ring" viewBox="0 0 40 40" aria-hidden="true"><circle class="sw-ring__track" cx="20" cy="20" r="17"/><circle class="sw-ring__arc" cx="20" cy="20" r="17" pathLength="1"/></svg><h3 class="m-text-4">Strict Determinism</h3><p class="m-text sw-text">Zero flaky tests, predictable runtime behavior, and reproducible builds across every environment.</p></li>
+        <li class="sw-tile m-surface-3"><svg class="sw-ring" viewBox="0 0 40 40" aria-hidden="true"><circle class="sw-ring__track" cx="20" cy="20" r="17"/><circle class="sw-ring__arc" cx="20" cy="20" r="17" pathLength="1"/></svg><h3 class="m-text-4">Zero AI Slop</h3><p class="m-text sw-text">Genuine software craftsmanship over corporate buzzwords, bloated dependencies, and marketing fluff.</p></li>
+        <li class="sw-tile m-surface-3"><svg class="sw-ring" viewBox="0 0 40 40" aria-hidden="true"><circle class="sw-ring__track" cx="20" cy="20" r="17"/><circle class="sw-ring__arc" cx="20" cy="20" r="17" pathLength="1"/></svg><h3 class="m-text-4">Collective Ownership</h3><p class="m-text sw-text">Open collaboration, shared equity, and transparent credit attribution through crustdev.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- team: four team portraits with names, roles and one line each (animation: scene:team) -->
+<section id="team" class="tm" data-8b-section="team">
+  <h2 class="m-text-2 tm-h"><span class="l-a">The collective,</span><span class="l-b">one direction.</span></h2>
+  <ul class="tm-row">
+    <li class="tm-card"><div class="tm-photo"><img style="background:#404040" class="m-photo" src="https://images.unsplash.com/photo-1676989880574-6be39345d345?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8cG9ydHJhaXQlMjBtYW4lMjBvZmZpY2UlMjBwbGFpbiUyMGJhY2tncm91bmR8ZW58MXwxfHx8MTc5MTM2NTcxMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="Portrait of Rustaman Delvianova" width="1600" height="2400" loading="lazy"></div><h3 class="m-text-4">Rustaman Delvianova</h3><p class="m-text-3 tm-role">Founder · Systems Architect</p><p class="m-text">Leads architecture across procedural voxel engines, open-source SDKs, and collective infrastructure.</p></li>
+    <li class="tm-card"><div class="tm-photo"><img style="background:#262626" class="m-photo" src="https://images.unsplash.com/photo-1655249493799-9cee4fe983bb?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8cG9ydHJhaXQlMjBwcm9mZXNzaW9uYWwlMjB3b21hbiUyMHBsYWluJTIwYmFja2dyb3VuZHxlbnwxfDF8fHwxNzkxMzY1NzEwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="crustdev studio team" width="1600" height="2400" loading="lazy"></div><h3 class="m-text-4">crustdev studio</h3><p class="m-text-3 tm-role">Spatial Worlds</p><p class="m-text">Crafts original Roblox titles with custom physics, procedural gameplay, and persistent worlds.</p></li>
+    <li class="tm-card"><div class="tm-photo"><img style="background:#f3f3f3" class="m-photo" src="https://images.unsplash.com/photo-1652226825940-46ad2a55d132?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8b2xkZXIlMjB3b21hbiUyMHBvcnRyYWl0JTIwc21pbGluZ3xlbnwxfDF8fHwxNzkxMzY1Nzk2fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="crustdev labs team" width="1600" height="2400" loading="lazy"></div><h3 class="m-text-4">crustdev labs</h3><p class="m-text-3 tm-role">Developer Tools</p><p class="m-text">Builds deterministic procedural noise algorithms, git trailer tools, and automated workflows.</p></li>
+    <li class="tm-card"><div class="tm-photo"><img style="background:#d9d9d9" class="m-photo" src="https://images.unsplash.com/photo-1770510067230-1059f0776b3a?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8cG9ydHJhaXQlMjBtYW4lMjBvZmZpY2UlMjBwbGFpbiUyMGJhY2tncm91bmR8ZW58MXwxfHx8MTc5MTM2NTcxMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="crustdev records team" width="1600" height="1969" loading="lazy"></div><h3 class="m-text-4">crustdev records</h3><p class="m-text-3 tm-role">Spatial Audio</p><p class="m-text">Composes in-game dynamic audio stems and original reactive soundtracks.</p></li>
+  </ul>
+</section>
+
+<!-- principle: one large staggered quote on the rule, ending in a red full stop (animation: scene:principle) -->
+<section id="principle" class="pc" data-8b-section="principle">
+  <p class="m-text-3 pc-cap l-b">The one rule we keep across every codebase</p>
+  <blockquote class="m-text-2 pc-q">
+    <span class="pc-l l-a">Every system</span>
+    <span class="pc-l l-b">that lasts</span>
+    <span class="pc-l l-a">first built</span>
+    <span class="pc-l l-b pc-in">its invariants<span class="pc-dot">.</span></span>
+  </blockquote>
+</section>
+
+<!-- faq: questions and answers (native <details>) -->
+<section id="faq" class="fq" data-8b-section="faq">
+  <h2 class="m-text-2 fq-h"><span class="l-a">Questions</span><span class="l-b">we hear</span><span class="l-b">often.</span></h2>
+  <div class="fq-list">
+    <div class="fq-item"><span class="fq-line" aria-hidden="true" data-8b-motion="rule"></span><details><summary class="m-text-4 fq-q"><span>What is crustdev?</span><span class="fq-icon" aria-hidden="true"></span></summary><p class="m-text fq-a">An independent creative studio and co-ownership collective operating across original Roblox titles (studio), developer software (labs), and dynamic game audio (records).</p></details></div>
+    <div class="fq-item"><span class="fq-line" aria-hidden="true" data-8b-motion="rule"></span><details><summary class="m-text-4 fq-q"><span>What is your open-source philosophy?</span><span class="fq-icon" aria-hidden="true"></span></summary><p class="m-text fq-a">We build zero-dependency primitives with strict type safety, predictable execution, and 100% test pass rates, published under permissive open-source licenses.</p></details></div>
+    <div class="fq-item"><span class="fq-line" aria-hidden="true" data-8b-motion="rule"></span><details><summary class="m-text-4 fq-q"><span>How can we collaborate with crustdev?</span><span class="fq-icon" aria-hidden="true"></span></summary><p class="m-text fq-a">We partner with developers, audio creators, and engineers who value craftsmanship and shared collective ownership. Reach out via email to discuss alignment.</p></details></div>
+    <div class="fq-item"><span class="fq-line" aria-hidden="true" data-8b-motion="rule"></span><details><summary class="m-text-4 fq-q"><span>What stack do you use?</span><span class="fq-icon" aria-hidden="true"></span></summary><p class="m-text fq-a">TypeScript, Node.js, Python, Rust, Go, Luau for spatial Roblox engine systems, modern CSS, and edge cloud infrastructure.</p></details></div>
+    <div class="fq-item"><span class="fq-line" aria-hidden="true" data-8b-motion="rule"></span><details><summary class="m-text-4 fq-q"><span>Do you take on systems consulting?</span><span class="fq-icon" aria-hidden="true"></span></summary><p class="m-text fq-a">Selectively. We take on high-impact architecture reviews, SDK parity development, and performance optimization retainers for core teams.</p></details></div>
+  </div>
+</section>
+
+<!-- reviews: four client reviews on sheets that stack as you scroll (animation: scene:reviews) -->
+<section id="reviews" class="rv" data-8b-section="reviews">
+  <h2 class="m-text-2 rv-h"><span class="l-a">Verified open-source</span><span class="l-b">contributions.</span></h2>
+  <ol class="rv-stack">
+    <li class="rv-sheet m-surface" style="--i:0"><blockquote><p class="m-text-4 rv-quote">"Prevented unexpected Avatar sizing collapse in Button leadingVisual slots. 18/18 CI suites passed."</p></blockquote><p class="m-text-3 rv-who"><span>primer/react</span><span>GitHub Design System · PR #8645</span></p></li>
+    <li class="rv-sheet m-surface-2" style="--i:1"><blockquote><p class="m-text-4 rv-quote">"Forward domain_tools and tool_detail direct kwargs in crawl and start_crawl methods."</p></blockquote><p class="m-text-3 rv-who"><span>firecrawl/firecrawl</span><span>Web Scraping Engine · PR #5501</span></p></li>
+    <li class="rv-sheet m-surface" style="--i:2"><blockquote><p class="m-text-4 rv-quote">"Fix Azure DevOps SSH remote browse URL generation by correctly stripping _git path segment."</p></blockquote><p class="m-text-3 rv-who"><span>All-Hands-AI/OpenHands</span><span>Autonomous AI Engineer · PR #19141</span></p></li>
+    <li class="rv-sheet m-surface-2" style="--i:3"><blockquote><p class="m-text-4 rv-quote">"Deterministic procedural terrain generation, multi-octave noise, and voxel biome engine SDK."</p></blockquote><p class="m-text-3 rv-who"><span>@crustdev/synthetix</span><span>npm Registry · v1.0.0</span></p></li>
+  </ol>
+</section>
+
+<!-- contact: opening hours set large in brackets with a small photo, phone, email, address and a call-booking form (placeholders) -->
+<section id="contact" class="ct" data-8b-section="contact">
+  <p class="m-text-2 ct-clock"><span aria-hidden="true">(</span><span>09:00</span><span class="sr-only"> to </span><span class="ct-frame"><img style="background:#0c2626" class="m-photo" src="image/crustdev-logo.png" alt="crustdev symbol" width="150" height="150" loading="lazy"></span><span>18:00</span><span aria-hidden="true">)</span></p>
+  <p class="m-text-3 ct-days">Open Monday to Friday · Garut, Indonesia : Global Remote</p>
+  <div class="ct-grid">
+    <span class="l-rule ct-rule" aria-hidden="true"></span>
+    <dl class="ct-lines">
+      <div data-8b-motion="post"><dt class="m-text-3">Direct Email</dt><dd class="m-text"><a class="m-link" href="mailto:rustaman@rus.my.id">rustaman@rus.my.id</a></dd></div>
+      <div data-8b-motion="post"><dt class="m-text-3">Studio Portal</dt><dd class="m-text"><a class="m-link" href="https://crusts.dev" target="_blank" rel="noopener">crusts.dev</a></dd></div>
+      <div data-8b-motion="post"><dt class="m-text-3">GitHub Profile</dt><dd class="m-text"><a class="m-link" href="https://github.com/Rustaman1280" target="_blank" rel="noopener">github.com/Rustaman1280</a></dd></div>
+      <div data-8b-motion="post"><dt class="m-text-3">npm Organization</dt><dd class="m-text"><a class="m-link" href="https://www.npmjs.com/~crustdev" target="_blank" rel="noopener">npmjs.com/~crustdev</a></dd></div>
+    </dl>
+    <div class="ct-right">
+      <h2 class="m-text-2 ct-h"><span>Start a</span> <span class="ct-h2">conversation.</span></h2>
+      <form class="ct-form" action="mailto:rustaman@rus.my.id" method="post" enctype="text/plain">
+        <label class="m-field"><span class="m-field__label">Your name</span><input class="m-field__input" name="name" type="text" autocomplete="name" required></label>
+        <label class="m-field"><span class="m-field__label">Email</span><input class="m-field__input" name="email" type="email" autocomplete="email" required></label>
+        <label class="m-field ct-wide"><span class="m-field__label">What are you building?</span><input class="m-field__input" name="project" type="text"></label>
+        <label class="m-field ct-wide"><span class="m-field__label">Message / Details</span><textarea class="m-field__input" name="message" rows="3" required></textarea></label>
+        <div class="ct-send">
+          <button class="m-btn" type="submit"><span class="m-btn__label">Send Message</span></button>
+          <p class="m-text-3 ct-thanks" role="status" hidden>Thank you : your message has been sent.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- footer: tagline, links, call/email/map icons, the full-width wordmark in two halves, copyright and the Design: 8B credit (animation: scene:footer) -->
+<footer id="footer" class="ft" data-8b-section="footer">
+  <div class="ft-inner">
+    <div class="ft-top">
+      <p class="m-text-3 ft-tag">Rustaman Delvianova : Founder of crustdev<br>Systems, procedural voxel engines, and open-source tooling.</p>
+      <nav aria-label="Footer">
+        <ul class="ft-links m-text">
+          <li><a class="m-link" href="#services">Services</a></li>
+          <li><a class="m-link" href="#month">A sprint</a></li>
+          <li><a class="m-link" href="#clients">Projects</a></li>
+          <li><a class="m-link" href="#prices">Modules</a></li>
+          <li><a class="m-link" href="#switch">Principles</a></li>
+          <li><a class="m-link" href="#team">Collective</a></li>
+          <li><a class="m-link" href="#faq">Questions</a></li>
+          <li><a class="m-link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <ul class="ft-icons">
+        <li><a class="m-icon" href="mailto:rustaman@rus.my.id" aria-label="Send email"><svg class="m-icon__glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17v11h-17z M3.5 7l8.5 6.5L20.5 7"/></svg></a></li>
+        <li><a class="m-icon" href="https://github.com/Rustaman1280" target="_blank" rel="noopener" aria-label="GitHub"><svg class="m-icon__glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg></a></li>
+        <li><a class="m-icon" href="https://crusts.dev" target="_blank" rel="noopener" aria-label="crustdev website"><svg class="m-icon__glyph" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a></li>
+      </ul>
+    </div>
+    <p class="m-text-2 ft-word" style="--len:8"><span class="ft-a">rusta</span><span class="ft-b">man</span></p>
+    <div class="ft-bottom m-text-3"><span>(c) 2026 Rustaman Delvianova : <a href="https://crusts.dev" style="color:inherit">crusts.dev</a> : Design: <a href="https://8b.com/" style="color:inherit" data-8b-credit>8B</a></span><a class="m-link" href="#opening">Back to the top</a></div>
+  </div>
+  <div class="ghost m-text-2" aria-hidden="true"><span class="ghost__a">rusta</span><span class="ghost__b">man</span></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+<script data-8b-part="section-script:nav">
+(() => {
+  const nav = document.getElementById('nav');
+  const button = nav.querySelector('.nav__menu');
+  const menu = document.getElementById('menu');
+  const close = menu.querySelector('.menu__close');
+  let last = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (Math.abs(y - last) < 4) return;
+    nav.classList.toggle('is-hidden', y > last && y > 140);
+    last = y;
+  }, { passive: true });
+  nav.addEventListener('focusin', () => nav.classList.remove('is-hidden'));
+  const open = () => {
+    menu.hidden = false;
+    button.setAttribute('aria-expanded', 'true');
+    window.lenis?.stop();
+    menu.querySelector('a')?.focus();
+  };
+  const shut = (focus = true) => {
+    menu.hidden = true;
+    button.setAttribute('aria-expanded', 'false');
+    window.lenis?.start();
+    if (focus) button.focus();
+  };
+  button.addEventListener('click', open);
+  close.addEventListener('click', () => shut());
+  menu.addEventListener('keydown', event => { if (event.key === 'Escape') shut(); });
+  menu.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', event => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    event.preventDefault();
+    event.stopPropagation();
+    shut(false);
+    if (window.lenis) window.lenis.scrollTo(target); else target.scrollIntoView();
+  }));
+})();
+</script>
+<script data-8b-part="section-script:opening">
+(() => {
+  const level = document.querySelector('#opening .op-level');
+  if (!level || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([entry]) => level.classList.toggle('is-paused', !entry.isIntersecting)).observe(level);
+})();
+</script>
+<script data-8b-part="section-script:contact">
+(() => {
+  const form = document.querySelector('#contact .ct-form');
+  const thanks = form.querySelector('.ct-thanks');
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    thanks.hidden = false;
+    form.reset();
+  });
+})();
+</script>
+<script data-8b-part="motion-queue">
+(() => {
+  'use strict';
+  const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
+  const parsed = document.readyState === 'loading' ? new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true })) : Promise.resolve();
+  const ready = () => Promise.all([fonts, parsed]).then(() => firsts);
+  const nextTask = () => window.scheduler?.yield?.() ?? new Promise(resolve => setTimeout(resolve));
+  const refresh = () => {
+    if (typeof window.refreshScroll === 'function') return window.refreshScroll();
+    window.ScrollTrigger?.sort(); window.ScrollTrigger?.refresh();
+  };
+  const run = (setup, name) => {
+    for (const trigger of window.ScrollTrigger?.getAll() || []) if (!trigger.end && window.ScrollTrigger.getAll().includes(trigger)) trigger.refresh(0, 1);
+    const context = window.gsap.context(() => {});
+    const log = new MutationObserver(() => {});
+    log.observe(document.documentElement, { attributes: true, attributeOldValue: true, subtree: true });
+    let failure = null, records;
+    try { context.add(() => { try { setup(); } catch (error) { failure = error; } }); }
+    finally { records = log.takeRecords(); log.disconnect(); }
+    if (!failure) return true;
+    try { context.revert(); } catch (error) { console.error(name, 'revert failed', error); }
+    for (const { target, attributeName, oldValue } of records.reverse()) {
+      const now = target.getAttribute(attributeName);
+      if (oldValue == null) { if (now != null) target.removeAttribute(attributeName); }
+      else if (now !== oldValue) target.setAttribute(attributeName, oldValue);
+    }
+    console.error(name, failure);
+    return false;
+  };
+  let firsts = Promise.resolve(), tail = null, pending = 0, lazy = null, building = 0, firstCount = 0;
+  window.motionReady = ready();
+  parsed.then(() => { if (firstCount && !tail) firsts.then(refresh); });
+  window.queueMotion = (setup, { first = false, near, id } = {}) => {
+    if (!window.gsap || typeof setup !== 'function') return;
+    const name = id || document.currentScript?.getAttribute('data-8b-part') || 'motion';
+    if (near instanceof Element && window.IntersectionObserver) {
+      const watch = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        watch.disconnect();
+        building++;
+        lazy = (lazy || ready()).then(nextTask).then(() => run(setup, name)).finally(() => { if (!--building) refresh(); });
+      }, { rootMargin: '100% 0px' });
+      watch.observe(near);
+      return;
+    }
+    if (first) { firstCount++; firsts = firsts.then(() => fonts).then(() => { if (!run(setup, name)) refresh(); }); }
+    else {
+      pending++;
+      tail = (tail || ready()).then(nextTask).then(() => run(setup, name))
+        .finally(() => { if (!--pending) refresh(); });
+    }
+    window.motionReady = Promise.all([firsts, tail]);
+  };
+})();
+</script>
+<script data-8b-part="page-init">
+gsap.registerPlugin(ScrollTrigger);
+function refreshScroll() {
+  ScrollTrigger.sort();
+  ScrollTrigger.refresh();
+}
+gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+  const nav = document.getElementById('nav');
+  const lenis = window.lenis = new Lenis({ lerp: 0.085, anchors: { offset: -(nav ? nav.offsetHeight : 0) } });
+  const tick = time => lenis.raf(time * 1000);
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(tick);
+  gsap.ticker.lagSmoothing(0);
+  return () => { gsap.ticker.remove(tick); gsap.ticker.lagSmoothing(500, 33); lenis.destroy(); window.lenis = null; };
+});
+</script>
+<script data-8b-part="motion">
+const effects = {
+  rule(element, vars = {}) {
+    const tall = element.offsetHeight > element.offsetWidth;
+    return gsap.fromTo(element, tall ? { scaleY: 0 } : { scaleX: 0 }, { ...(tall ? { scaleY: 1 } : { scaleX: 1 }), transformOrigin: tall ? '50% 0%' : '0% 50%', duration: 1.1, ease: 'power3.inOut', ...vars });
+  },
+  post(element, vars = {}) {
+    const side = element.dataset.post === 'right' ? 1 : -1;
+    return gsap.fromTo(element, { x: 36 * side, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out', ...vars });
+  },
+  weigh(element, vars = {}) {
+    return gsap.fromTo(element, { fontWeight: 300 }, { fontWeight: 500, ease: 'none', ...vars });
+  }
+};
+['rule', 'post'].forEach(name => {
+  document.querySelectorAll('[data-8b-section]').forEach(section => {
+    const elements = [...section.querySelectorAll(`[data-8b-motion~="${name}"]`)];
+    if (!elements.length) return;
+    const id = `effect:${name}:${section.id}`;
+    queueMotion(() => gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      elements.forEach((element, i) => ScrollTrigger.create({
+        id: `${id}:${i}`, trigger: element, start: 'top 90%', once: true,
+        animation: effects[name](element, { paused: true, delay: element.dataset.post === 'right' ? 0.12 : 0 })
+      }));
+    }), { first: section.getBoundingClientRect().top < innerHeight, id });
+  });
+});
+</script>
+<script data-8b-part="scene:opening">
+queueMotion(() => {
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const section = document.getElementById('opening');
+    const two = section.querySelector('.op-two');
+    const rule = section.querySelector('.op-rule');
+    const left = section.querySelectorAll('.op-one .op-a .ln__i');
+    const right = section.querySelectorAll('.op-one .op-h1 .ln__i, .op-one .op-sub .l-b .ln__i');
+    const rows = [...section.querySelectorAll('.op-say .l-a')];
+    const tiles = section.querySelectorAll('.op-tile');
+    const para = section.querySelector('.op-para');
+    const slit = () => {
+      const width = two.clientWidth;
+      const l = rule.offsetLeft / width * 100;
+      return `inset(0% ${(100 - l - 100 / width).toFixed(3)}% 0% ${l.toFixed(3)}%)`;
+    };
+    const rise = [150, 240, 190, 280];
+    const timeline = gsap.timeline({ scrollTrigger: {
+      id: 'opening', trigger: section, start: 'top top', end: () => `+=${two.offsetTop}`, scrub: 0.6, invalidateOnRefresh: true
+    } });
+    timeline
+      .to(left, { x: () => -innerWidth * 0.08, ease: 'power2.in', duration: 0.6 }, 0)
+      .to(right, { x: () => innerWidth * 0.08, ease: 'power2.in', duration: 0.6 }, 0)
+      .fromTo(two, { clipPath: slit }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power2.inOut', duration: 0.7 }, 0.12)
+      .fromTo(tiles, { y: i => rise[i % rise.length] }, { y: 0, ease: 'power2.out', duration: 0.62 }, 0.3)
+      .fromTo(para, { y: 70 }, { y: 0, ease: 'power2.out', duration: 0.5 }, 0.42)
+      .fromTo(rows.map(row => row.firstElementChild), { x: i => rule.offsetLeft - rows[i].offsetLeft }, { x: 0, ease: 'power3.out', duration: 0.42, stagger: 0.08 }, 0.5);
+  });
+}, { first: true, id: 'scene:opening' });
+</script>
+<script data-8b-part="scene:month">
+queueMotion(() => {
+  gsap.matchMedia().add({
+    wide: '(min-width: 701px) and (prefers-reduced-motion: no-preference)',
+    narrow: '(max-width: 700px) and (prefers-reduced-motion: no-preference)'
+  }, context => {
+    const { wide } = context.conditions;
+    const section = document.getElementById('month');
+    const board = section.querySelector('.mo-board');
+    const fill = section.querySelector('.mo-fill');
+    const marker = section.querySelector('.mo-marker');
+    const tasks = [...section.querySelectorAll('.mo-task')];
+    section.setAttribute('data-month', '');
+    const mark = progress => tasks.forEach((task, i) => task.classList.toggle('is-on', progress >= i / tasks.length + 0.012));
+    const timeline = gsap.timeline({
+      onUpdate() { mark(this.progress()); },
+      scrollTrigger: { id: 'month', trigger: section, start: 'top top', end: 'bottom bottom', scrub: 0.5, invalidateOnRefresh: true }
+    });
+    timeline
+      .fromTo(fill, wide ? { scaleX: 0 } : { scaleY: 0 }, wide ? { scaleX: 1, ease: 'none', duration: 1 } : { scaleY: 1, ease: 'none', duration: 1 }, 0)
+      .fromTo(marker, wide ? { x: () => -board.clientWidth } : { y: () => -board.clientHeight }, wide ? { x: 0, ease: 'none', duration: 1 } : { y: 0, ease: 'none', duration: 1 }, 0);
+    mark(timeline.progress());
+    return () => { section.removeAttribute('data-month'); tasks.forEach(task => task.classList.remove('is-on')); };
+  });
+}, { id: 'scene:month' });
+</script>
+<script data-8b-part="scene:clients">
+queueMotion(() => {
+  gsap.matchMedia().add({
+    wide: '(min-width: 701px) and (prefers-reduced-motion: no-preference)',
+    narrow: '(max-width: 700px) and (prefers-reduced-motion: no-preference)'
+  }, context => {
+    const { wide } = context.conditions;
+    const section = document.getElementById('clients');
+    const title = section.querySelector('.cl-title');
+    const globe = section.querySelector('.cl-globe');
+    const a = section.querySelector('.cl-half--a');
+    const b = section.querySelector('.cl-half--b');
+    const gap = () => parseFloat(getComputedStyle(title).fontSize) * 0.26;
+    const together = () => {
+      const cx = title.clientWidth / 2;
+      if (wide) {
+        const start = cx - (a.offsetWidth + gap() + b.offsetWidth) / 2;
+        return { ax: start - a.offsetLeft, bx: start + a.offsetWidth + gap() - b.offsetLeft, ay: 0, by: 0 };
+      }
+      const cy = title.clientHeight / 2;
+      return { ax: cx - a.offsetWidth / 2 - a.offsetLeft, bx: cx - b.offsetWidth / 2 - b.offsetLeft, ay: cy - a.offsetHeight - a.offsetTop, by: cy - b.offsetTop };
+    };
+    const timeline = gsap.timeline({ scrollTrigger: {
+      id: 'clients', trigger: section, start: 'top top', end: 'bottom bottom', scrub: 0.8, invalidateOnRefresh: true
+    } });
+    timeline
+      .fromTo(globe, { y: () => innerHeight * 0.8 }, { y: 0, ease: 'power2.out', duration: 0.5 }, 0)
+      .fromTo(globe, { rotationY: -330, rotationX: 22 }, { rotationY: 0, rotationX: 0, ease: 'power1.out', duration: 1 }, 0)
+      .fromTo(a, { x: () => together().ax, y: () => together().ay }, { x: 0, y: 0, ease: 'power2.inOut', duration: 0.42 }, 0.1)
+      .fromTo(b, { x: () => together().bx, y: () => together().by }, { x: 0, y: 0, ease: 'power2.inOut', duration: 0.42 }, 0.1);
+  });
+}, { id: 'scene:clients' });
+</script>
+<script data-8b-part="scene:switch">
+queueMotion(() => {
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const section = document.getElementById('switch');
+    const tiles = [...section.querySelectorAll('.sw-tile')];
+    section.setAttribute('data-switch', '');
+    const timeline = gsap.timeline({
+      onUpdate() { const p = this.progress(); tiles.forEach((tile, i) => tile.classList.toggle('is-done', p >= (i + 1) / tiles.length - 0.03)); },
+      scrollTrigger: { id: 'switch', trigger: section, start: 'top top', end: 'bottom bottom', scrub: 0.4 }
+    });
+    tiles.forEach((tile, i) => timeline.fromTo(tile.querySelector('.sw-ring__arc'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', duration: 1 }, i));
+    return () => { section.removeAttribute('data-switch'); tiles.forEach(tile => tile.classList.remove('is-done')); };
+  });
+}, { id: 'scene:switch' });
+</script>
+<script data-8b-part="scene:team">
+queueMotion(() => {
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const section = document.getElementById('team');
+    const row = section.querySelector('.tm-row');
+    const cards = [...row.querySelectorAll('.tm-card')];
+    const tilt = [-7, 5, -3, 8, -5, 3];
+    const middle = (cards.length - 1) / 2;
+    const timeline = gsap.timeline({ scrollTrigger: {
+      id: 'team', trigger: row, start: 'top 92%', end: 'center 52%', scrub: 0.6, invalidateOnRefresh: true
+    } });
+    cards.forEach((card, i) => timeline.fromTo(card, {
+      x: () => row.clientWidth / 2 - (card.offsetLeft + card.offsetWidth / 2) + (i - middle) * 16,
+      y: () => row.clientHeight / 2 - (card.offsetTop + card.offsetHeight / 2) + (i % 2 ? -12 : 12),
+      rotation: () => tilt[i % tilt.length]
+    }, { x: 0, y: 0, rotation: 0, ease: 'power2.inOut', duration: 1 }, i * 0.08));
+  });
+}, { id: 'scene:team' });
+</script>
+<script data-8b-part="scene:principle">
+queueMotion(() => {
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const section = document.getElementById('principle');
+    const lines = [...section.querySelectorAll('.pc-l')];
+    lines.forEach((line, i) => effects.weigh(line, { scrollTrigger: {
+      id: `principle:l${i}`, trigger: line, start: 'top 92%', end: 'top 46%', scrub: 0.3
+    } }));
+    const last = lines[lines.length - 1];
+    gsap.fromTo(section.querySelector('.pc-dot'), { scale: 0, transformOrigin: '50% 80%' }, { scale: 1, ease: 'back.out(3)', transformOrigin: '50% 80%', scrollTrigger: {
+      id: 'principle:dot', trigger: last, start: 'top 62%', end: 'top 46%', scrub: 0.3
+    } });
+  });
+}, { id: 'scene:principle' });
+</script>
+<script data-8b-part="scene:reviews">
+queueMotion(() => {
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const section = document.getElementById('reviews');
+    const stack = section.querySelector('.rv-stack');
+    const sheets = [...stack.querySelectorAll('.rv-sheet')];
+    const flowTop = index => sheets.slice(0, index).reduce((sum, sheet) => sum + sheet.offsetHeight + parseFloat(getComputedStyle(sheet).marginBottom), 0);
+    sheets.slice(0, -1).forEach((sheet, i) => {
+      const next = sheets[i + 1];
+      gsap.fromTo(sheet, { scale: 1, transformOrigin: '50% 0%' }, { scale: 0.92, ease: 'none', transformOrigin: '50% 0%', scrollTrigger: {
+        id: `reviews:s${i}`, trigger: stack, scrub: true, invalidateOnRefresh: true,
+        start: () => `top+=${flowTop(i + 1)} bottom`,
+        end: () => `top+=${flowTop(i + 1)} ${parseFloat(getComputedStyle(next).top) || 0}px`
+      } });
+    });
+  });
+}, { id: 'scene:reviews' });
+</script>
+<script data-8b-part="scene:footer">
+queueMotion(() => {
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const footer = document.getElementById('footer');
+    const word = footer.querySelector('.ft-word');
+    const halves = [footer.querySelector('.ft-a'), footer.querySelector('.ft-b')];
+    const ghosts = [footer.querySelector('.ghost__a'), footer.querySelector('.ghost__b')];
+    const ratio = () => parseFloat(getComputedStyle(ghosts[0]).fontSize) / parseFloat(getComputedStyle(word).fontSize);
+    gsap.timeline({ scrollTrigger: {
+      id: 'footer', trigger: word, start: 'top bottom', end: () => ScrollTrigger.maxScroll(window), scrub: 0.6, invalidateOnRefresh: true
+    } })
+      .to(ghosts, { yPercent: 130, ease: 'power2.in', duration: 0.35 }, 0)
+      .fromTo(halves[0], { scale: ratio, transformOrigin: '0% 100%' }, { scale: 1, transformOrigin: '0% 100%', ease: 'power2.inOut', duration: 0.75 }, 0.25)
+      .fromTo(halves[1], { scale: ratio, transformOrigin: '100% 100%' }, { scale: 1, transformOrigin: '100% 100%', ease: 'power2.inOut', duration: 0.75 }, 0.25);
+  });
+}, { id: 'scene:footer' });
+</script>
 </body>
 </html>
