@@ -1,258 +1,731 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bebas.ai</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rustaman Delvianova : Systems, Collectives & Open Source</title>
+  <meta name="description" content="Founder of crustdev. Systems engineer, open-source contributor, and builder of spatial virtual worlds, procedural engines, and developer tools.">
+  <meta property="og:title" content="Rustaman Delvianova : Systems, Collectives & Open Source">
+  <meta property="og:description" content="Founder of crustdev. Building independent creative studios, procedural voxel engines, and open-source developer tooling.">
+  <meta property="og:url" content="https://rus.my.id">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="image/crustdev-logo.png">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --bg-surface: #11131a;
+      --bg-elevated: #161923;
+      --border: #222634;
+      --border-hover: #333a4e;
+      --text-main: #f0f3fa;
+      --text-muted: #8e95a5;
+      --text-dim: #5c6476;
+      --mint: #00f5a0;
+      --violet: #8a2be2;
+      --cerulean: #0088ff;
+      --amber: #ffb703;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      --max-width: 860px;
+    }
 
-        body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: white;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .header {
-            padding: 1rem;
-            text-align: center;
-            background: transparent;
-            backdrop-filter: blur(5px);
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 3rem 1.5rem 6rem;
+    }
 
-        .header h1 {
-            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 1.7rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
 
-        .chat-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            width: 100%;
-            padding-bottom: 100px;
-        }
+    header {
+      margin-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+    }
 
-        .message {
-            margin: 15px 0;
-            animation: fadeIn 0.3s ease-in;
-        }
+    .status-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 245, 160, 0.08);
+      border: 1px solid rgba(0, 245, 160, 0.25);
+      border-radius: 9999px;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.78rem;
+      color: var(--mint);
+      font-family: var(--font-mono);
+      margin-bottom: 1.5rem;
+    }
 
-        .user-message {
-            text-align: right;
-        }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--mint);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--mint);
+    }
 
-        .bot-message {
-            text-align: center;
-            margin: 40px auto;
-            max-width: 90%;
-            width: fit-content;
-        }
+    .identity {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
 
-        .user-bubble {
-            display: inline-block;
-            padding: 15px 25px;
-            border-radius: 30px;
-            background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 117, 252, 0.3);
-        }
+    .title-group h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      line-height: 1.2;
+    }
 
-        .bot-bubble {
-            font-size: 1.1em;
-            line-height: 1.6;
-            padding: 20px;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.05);
-            box-shadow: 0 4px 30px rgba(106, 17, 203, 0.2);
-        }
+    .title-group p.sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
 
-        .input-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-        }
+    .avatar-wrap {
+      width: 68px;
+      height: 68px;
+      border-radius: 16px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
 
-        #user-input {
-            flex: 1;
-            max-width: 800px;
-            padding: 18px 25px;
-            border: none;
-            border-radius: 30px;
-            background: rgba(255,255,255,0.05);
-            color: white;
-            font-size: 16px;
-            box-shadow: 0 8px 32px rgba(106, 17, 203, 0.3);
-            transition: all 0.3s ease;
-        }
+    .avatar-wrap img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+    }
 
-        #user-input:focus {
-            outline: none;
-            box-shadow: 0 8px 32px rgba(37, 117, 252, 0.5);
-        }
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
 
-        #send-button {
-            padding: 18px 35px;
-            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.15s ease;
+    }
 
-        .disclaimer {
-            text-align: center;
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9em;
-            margin-bottom: 30px;
-            padding: 15px;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.05);
-        }
+    .nav-links a:hover {
+      color: #ffffff;
+    }
 
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: rgba(255,255,255,0.5);
-        }
+    section {
+      margin-bottom: 3.5rem;
+    }
 
-        .loading::after {
-            content: '...';
-            display: inline-block;
-            animation: dots 1s infinite;
-        }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
 
-        @keyframes dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60%, 100% { content: '...'; }
-        }
+    .bio-lead {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+    }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+    .bio-text {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
 
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-            border-radius: 4px;
-        }
-    </style>
+    .crustdev-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-top: 1.5rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .crustdev-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .crustdev-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .crustdev-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .badge-collective {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(138, 43, 226, 0.15);
+      border: 1px solid rgba(138, 43, 226, 0.35);
+      color: #c792ea;
+      border-radius: 6px;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .pillar-item {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .pillar-name {
+      font-weight: 600;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .pillar-name.studio { color: var(--mint); }
+    .pillar-name.labs { color: var(--cerulean); }
+    .pillar-name.records { color: #d084f7; }
+
+    .pillar-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-top {
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-title svg {
+      opacity: 0.5;
+      transition: opacity 0.15s ease;
+    }
+
+    .card:hover .card-title svg {
+      opacity: 1;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 0.4rem;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: var(--bg-elevated);
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    .oss-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .oss-row {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s ease;
+    }
+
+    .oss-row:hover {
+      border-color: var(--border-hover);
+    }
+
+    .oss-info {
+      flex: 1;
+    }
+
+    .oss-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .oss-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .oss-stat {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--mint);
+      background: rgba(0, 245, 160, 0.08);
+      border: 1px solid rgba(0, 245, 160, 0.2);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .contact-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-info h3 {
+      font-size: 1.15rem;
+      color: #ffffff;
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-info p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .contact-action {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #ffffff;
+      color: #090a0f;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-surface);
+      border-color: var(--border-hover);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      margin-top: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 2rem 1rem 4rem;
+      }
+      .title-group h1 {
+        font-size: 1.75rem;
+      }
+      .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .contact-action {
+        width: 100%;
+        flex-direction: column;
+      }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        <h1>bebas.ai</h1>
-    </div>
-    
-    <div class="chat-container" id="chat-container">
-        <div class="disclaimer">
-            ⚠️ Ini hasil generate AI, informasi bisa saja keliru
+  <div class="container">
+    <header>
+      <div class="status-bar">
+        <span class="status-dot"></span>
+        <span>Independent Collective & Open Source</span>
+      </div>
+      <div class="identity">
+        <div class="title-group">
+          <h1>Rustaman Delvianova</h1>
+          <p class="sub">Founder of crustdev : Systems Engineer & Collective Builder</p>
         </div>
-    </div>
-    
-    <div class="input-container">
-        <input type="text" id="user-input" placeholder="Tanya apa aja ke bebas.ai...">
-        <button id="send-button">Kirim</button>
-    </div>
+        <div class="avatar-wrap">
+          <img src="image/crustdev-logo.png" alt="crustdev symbol">
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="https://crusts.dev" target="_blank" rel="noopener">
+          <span>crusts.dev</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <a href="https://github.com/Rustaman1280" target="_blank" rel="noopener">
+          <span>GitHub (Rustaman1280)</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <a href="https://www.npmjs.com/~crustdev" target="_blank" rel="noopener">
+          <span>npm (@crustdev)</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <a href="https://orcid.org/0009-0007-6286-3660" target="_blank" rel="noopener">
+          <span>ORCID</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </a>
+        <a href="mailto:rustaman@rus.my.id">
+          <span>rustaman@rus.my.id</span>
+        </a>
+      </nav>
+    </header>
 
-    <script>
-        const API_KEY = 'AIzaSyDGljaNj2RhkEqhLW125lVXghp';
-        const chatContainer = document.getElementById('chat-container');
-        const userInput = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
+    <main>
+      <section>
+        <div class="section-label">01 / Overview</div>
+        <p class="bio-lead">
+          I build deterministic software systems, spatial voxel engines, and open-source tooling.
+        </p>
+        <p class="bio-text">
+          As the founder of <strong>crustdev</strong>, I lead an independent creative studio and co-ownership collective operating across original interactive titles, developer software, and spatial sound engineering. My focus is on robust software craftsmanship: zero unnecessary abstraction layers, strict type safety, verified test coverage, and transparent peer collaboration.
+        </p>
+      </section>
 
-        async function sendMessage() {
-            const message = userInput.value.trim();
-            if (!message) return;
+      <section>
+        <div class="section-label">02 / Venture & Collective</div>
+        <div class="crustdev-card">
+          <div class="crustdev-header">
+            <div>
+              <div class="crustdev-title">crustdev (crusts.dev)</div>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.2rem;">
+                Independent creative studio and co-ownership collective.
+              </p>
+            </div>
+            <span class="badge-collective">Active Collective</span>
+          </div>
+          <div class="pillars-grid">
+            <div class="pillar-item">
+              <div class="pillar-name studio">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>crustdev studio</span>
+              </div>
+              <p class="pillar-desc">
+                Original virtual worlds and spatial Roblox experiences built with dedicated procedural gameplay logic and low-latency netcode.
+              </p>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-name labs">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <span>crustdev labs</span>
+              </div>
+              <p class="pillar-desc">
+                Software tools, procedural terrain engines, multi-octave noise packages, and distributed workflow automations.
+              </p>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-name records">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                <span>crustdev records</span>
+              </div>
+              <p class="pillar-desc">
+                Spatial soundscapes, dynamic reactive in-game stems, and original soundtracks supporting studio productions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            appendMessage(message, 'user');
-            userInput.value = '';
+      <section>
+        <div class="section-label">03 / Published Libraries & SDKs</div>
+        <div class="grid-cards">
+          <a class="card" href="https://www.npmjs.com/package/@crustdev/synthetix" target="_blank" rel="noopener">
+            <div class="card-top">
+              <div class="card-title">
+                <span>@crustdev/synthetix</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </div>
+              <p class="card-desc">
+                Deterministic procedural terrain generation, multi-octave simplex/Perlin noise, and voxel biome engine SDK for high-performance 3D spatial environments.
+              </p>
+            </div>
+            <div class="card-tags">
+              <span class="tag">npm package</span>
+              <span class="tag">procedural</span>
+              <span class="tag">voxels</span>
+              <span class="tag">v1.0.0</span>
+            </div>
+          </a>
 
-            // biar ada loading
-            const loading = document.createElement('div');
-            loading.className = 'loading';
-            loading.textContent = 'Sedang memproses';
-            chatContainer.appendChild(loading);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+          <a class="card" href="https://www.npmjs.com/package/@crustdev/collab-kit" target="_blank" rel="noopener">
+            <div class="card-top">
+              <div class="card-title">
+                <span>@crustdev/collab-kit</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </div>
+              <p class="card-desc">
+                Developer toolkit for engineering collectives and pair programming. Implements RFC 2822 git commit trailer parsing, co-authorship validation, and release changelog credit generation.
+              </p>
+            </div>
+            <div class="card-tags">
+              <span class="tag">typescript</span>
+              <span class="tag">git-trailers</span>
+              <span class="tag">cli</span>
+              <span class="tag">action</span>
+            </div>
+          </a>
+        </div>
+      </section>
 
-            try {
-                if (message.toLowerCase().includes('siapa yang buat') || 
-                    message.toLowerCase().includes('kelompok 5') || 
-                    message.toLowerCase().includes('pembuat')) {
-                    const teamResponse = "kelompok 5";
-                    loading.remove();
-                    appendMessage(teamResponse, 'bot');
-                    return;
-                }
+      <section>
+        <div class="section-label">04 / Open Source Contributions</div>
+        <div class="oss-list">
+          <a class="oss-row" href="https://github.com/primer/react/pull/8645" target="_blank" rel="noopener">
+            <div class="oss-info">
+              <div class="oss-name">
+                <span>primer/react</span>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">(GitHub Design System)</span>
+              </div>
+              <div class="oss-desc">
+                Prevent unexpected Avatar sizing collapse inside Button leadingVisual slots and responsive grid layouts (#7974). 18/18 CI suites passed.
+              </div>
+            </div>
+            <span class="oss-stat">PR #8645</span>
+          </a>
 
-                const response = await fetch(
-                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
-                    {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{
-                                parts: [{ 
-                                    text: `Berikan jawaban dengan bahasa santai dan mudah dipahami. kalo ada yang nanya siapa yang buat atau perkenalkan diri jawab Kami dari Kelompok 5 X PPL 1 SMKN 1 GARUT! Anggotanya ada Rustaman, Fahri , Shelly , Salman , dan Finsa! tapi kalau tidak suruh perkenalan maka jangan di jawah tentang kelompok kami ya. dan jangan jawab pakai tanda bintang ya atau pagar  Gunakan emoji jika pertanyaannya relevan. Pertanyaan: ${message}`
-                                }]
-                            }]
-                        })
-                    }
-                );
+          <a class="oss-row" href="https://github.com/firecrawl/firecrawl/pull/5501" target="_blank" rel="noopener">
+            <div class="oss-info">
+              <div class="oss-name">
+                <span>firecrawl/firecrawl</span>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">(Web Scraping & LLM ETL)</span>
+              </div>
+              <div class="oss-desc">
+                Forward domain_tools and tool_detail direct kwargs in crawl and start_crawl methods, preventing TypeErrors and aligning SDK parity.
+              </div>
+            </div>
+            <span class="oss-stat">PR #5501</span>
+          </a>
 
-                const data = await response.json();
-                const botResponse = data.candidates[0].content.parts[0].text;
-                loading.remove();
-                appendMessage(botResponse, 'bot');
-            } catch (error) {
-                console.error('Error:', error);
-                loading.remove();
-                appendMessage('Waduh, kami matiin dulu yaa, soalnya banyak yang nyepam! 😅 Kalau mau dihidupin, chat WA aja ke kami yaa', 'bot');
-            }
-        }
+          <a class="oss-row" href="https://github.com/firecrawl/firecrawl/pull/5500" target="_blank" rel="noopener">
+            <div class="oss-info">
+              <div class="oss-name">
+                <span>firecrawl/firecrawl</span>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">(Python SDK Engine)</span>
+              </div>
+              <div class="oss-desc">
+                Fold v1 changeTrackingOptions and jsonOptions into v2 formats with Pydantic model unpacking and typed format deduplication.
+              </div>
+            </div>
+            <span class="oss-stat">PR #5500</span>
+          </a>
 
-        function appendMessage(text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}-message`;
-            
-            const bubble = document.createElement('div');
-            bubble.className = `${sender === 'user' ? 'user-bubble' : 'bot-bubble'}`;
-            bubble.innerHTML = text.replace(/\n/g, '<br>');
-            
-            messageDiv.appendChild(bubble);
-            chatContainer.appendChild(messageDiv);
-            
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
+          <a class="oss-row" href="https://github.com/firecrawl/firecrawl/pull/4945" target="_blank" rel="noopener">
+            <div class="oss-info">
+              <div class="oss-name">
+                <span>firecrawl/firecrawl</span>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">(Change Tracking Diff)</span>
+              </div>
+              <div class="oss-desc">
+                Fix order sensitivity in change tracking markdown diffs and correct parse-diff prefix assertions. Approved 5/5.
+              </div>
+            </div>
+            <span class="oss-stat">PR #4945</span>
+          </a>
 
-        sendButton.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-    </script>
+          <a class="oss-row" href="https://github.com/OpenHands/OpenHands/pull/19141" target="_blank" rel="noopener">
+            <div class="oss-info">
+              <div class="oss-name">
+                <span>All-Hands-AI/OpenHands</span>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">(Autonomous AI Software Engineer)</span>
+              </div>
+              <div class="oss-desc">
+                Fix Azure DevOps SSH remote browser URL generation by correctly stripping _git path segment across git-sync interfaces.
+              </div>
+            </div>
+            <span class="oss-stat">PR #19141</span>
+          </a>
+
+          <a class="oss-row" href="https://github.com/NousResearch/hermes-agent/pull/147068" target="_blank" rel="noopener">
+            <div class="oss-info">
+              <div class="oss-name">
+                <span>NousResearch/hermes-agent</span>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">(Agent Runtime)</span>
+              </div>
+              <div class="oss-desc">
+                Handle Copilot ACP stdin broken pipe errors gracefully and introduce configuration toggle to disable unconfigured providers.
+              </div>
+            </div>
+            <span class="oss-stat">PR #147068</span>
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">05 / Get in Touch</div>
+        <div class="contact-box">
+          <div class="contact-info">
+            <h3>Direct Communication</h3>
+            <p>
+              Inquiries, collective collaboration, or systems consulting:
+            </p>
+            <p style="font-family: var(--font-mono); color: #ffffff; margin-top: 0.5rem; font-size: 0.95rem;">
+              rustaman@rus.my.id
+            </p>
+          </div>
+          <div class="contact-action">
+            <a class="btn" href="mailto:rustaman@rus.my.id">Send Email</a>
+            <button class="btn btn-secondary" onclick="navigator.clipboard.writeText('rustaman@rus.my.id'); alert('Email address copied to clipboard: rustaman@rus.my.id');">Copy Address</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <span>(c) 2026 Rustaman Delvianova</span>
+        <span style="margin: 0 0.5rem;">:</span>
+        <a href="https://crusts.dev" target="_blank">crusts.dev</a>
+      </div>
+      <div>
+        <span>Hosted via Cloudflare & GitHub Pages</span>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>

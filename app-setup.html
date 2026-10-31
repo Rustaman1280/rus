@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub App Setup : Developer Program Enrollment</title>
+  <style>
+    body {
+      background: #090a0f;
+      color: #f0f3fa;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1.5rem;
+      margin: 0;
+    }
+    .card {
+      background: #11131a;
+      border: 1px solid #222634;
+      border-radius: 12px;
+      padding: 2.5rem;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+    p {
+      color: #8e95a5;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+    .btn {
+      display: inline-block;
+      background: #238636;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease;
+      width: 100%;
+    }
+    .btn:hover {
+      background: #2ea043;
+    }
+    .steps {
+      text-align: left;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #222634;
+      font-size: 0.85rem;
+      color: #5c6476;
+    }
+    .steps ol {
+      padding-left: 1.25rem;
+      margin-top: 0.5rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Create GitHub App (1-Click)</h1>
+    <p>
+      Click the button below to register your GitHub App via GitHub's official Manifest Flow. All required metadata, URLs, and permissions are pre-configured.
+    </p>
+
+    <form action="https://github.com/settings/apps/new" method="post">
+      <input type="hidden" name="manifest" value='{"name":"crustdev-collab-suite","url":"https://rus.my.id","hook_attributes":{"url":"https://rus.my.id/webhook","active":false},"redirect_url":"https://rus.my.id","public":false,"default_permissions":{"contents":"read","metadata":"read"}}'>
+      <button type="submit" class="btn">Create GitHub App on GitHub.com</button>
+    </form>
+
+    <div class="steps">
+      <strong>Next step for GitHub Developer Program:</strong>
+      <ol>
+        <li>Click the button above and confirm on GitHub.</li>
+        <li>Once created, visit <a href="https://github.com/developer/register" target="_blank" style="color: #00f5a0;">github.com/developer/register</a> to complete your registration.</li>
+      </ol>
+    </div>
+  </div>
+</body>
+</html>
